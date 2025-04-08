@@ -10,7 +10,7 @@ body {
     align-items: center;
     min-height: 90vh;
     padding: 40px 80px;
-    background: linear-gradient(135deg, #56307e 0%, #548cef 100%);
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
 }
 
 .container {
@@ -129,10 +129,4 @@ body {
 
 .container .g-button:hover {
     cursor: pointer;
-}
-
-.forrem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
