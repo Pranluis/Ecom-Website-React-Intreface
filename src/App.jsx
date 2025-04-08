@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import CRUD from './components/ExtraContent/CRUD'
 import Login from './components/LoginPage/login'
+import RegisterPage from './components/RegisterPage/RegisterPage'
 
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
 
   return (
     <>
-      <Login/>
+      {/* <Login/> */}
+      <RegisterPage/>
       {/* <CRUD/> */}
       {/* <Extracomp /> */}
     </>
