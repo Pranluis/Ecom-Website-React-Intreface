@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import './App.css'
-import CRUD from './components/ExtraContent/CRUD'
-
+import { BrowserRouter } from 'react-router-dom'; 
+import React from 'react';
+import ReactDOM from 'react-dom/client'
+// import CRUD from './components/ExtraContent/CRUD'
+import Dasboard from './components/Dashboard/Dashboard'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -9,9 +12,10 @@ function App() {
   return (
     <>
       {/* <HomePage name="Pranluis" /> */}
-      <CRUD/>
+      {/* <CRUD/> */}
       {/* <Extracomp /> */}
-    </>
+      <Dasboard/>
+        </>
   )
 }
 
