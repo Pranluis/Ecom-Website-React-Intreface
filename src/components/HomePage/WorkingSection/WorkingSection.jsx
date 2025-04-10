@@ -6,26 +6,26 @@ const WorkingSection = () => {
   const steps = [
     {
       id: 1,
-      title: "Create Campaign",
-      description: "Curabitur a pretium orci, a venenatis diam. Phasellus id mi velit.",
+      title: "Browse Products",
+      description: "Explore a wide range of categories and find exactly what you need.",
       image: "https://files.readme.io/cb760b2-create-single-message-campaign.png",
     },
     {
       id: 2,
-      title: "Choose Influencer",
-      description: "Vestibulum et tincidunt sem, id sagittis nibh.",
+      title: "Add to Cart",
+      description: "Select your favorite products and add them to your shopping cart with ease.",
       image: "https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/3102884167/original/M7rUtbAW5Gce-LvJRfeMixdaSBjSE0ajjQ.png?1703670907",
     },
     {
       id: 3,
-      title: "Monitor Your Campaign",
-      description: "Curabitur a pretium orci, a venenatis diam. Phasellus id mi velit. Vestibulum et tincidunt sem, id sagittis nibh.",
+      title: "Secure Checkout",
+      description: "Enter your details and choose a payment method to complete your purchase securely.",
       image: "https://developers.is.com/wp-content/uploads/2018/12/create-android1-1.png",
     },
     {
       id: 4,
-      title: "Check Your Report",
-      description: "Vestibulum et tincidunt sem, id sagittis nibh.",
+      title: "Track Your Order",
+      description: "Get real-time updates and stay informed from dispatch to delivery.",
       image: "https://learn.classy.org/rs/673-DCU-558/images/Create%20Campaign%20from%20Template.gif",
     },
   ];
