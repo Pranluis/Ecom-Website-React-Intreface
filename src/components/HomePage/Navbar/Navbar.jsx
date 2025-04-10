@@ -13,6 +13,10 @@ const Navbar = () => {
     navigate('/register');
   };
 
+  const handleDashboardClick = () => {
+    navigate('/dashboard');
+  };
+
   const handleMouseEnter = (event) => {
     const hoverBox = event.currentTarget.querySelector(".hover-box");
     if (hoverBox) {
@@ -123,7 +127,7 @@ const Navbar = () => {
             <div className="leftcontent">
               <p className='middle-headline'>Connecting Shoppers with the Best Products for Ultimate Satisfaction</p>
               <p className='middle-subheadline'>Our platform simplifies discovering, managing, and purchasing top products to enhance your shopping experience.</p>
-              <button className='get-started-button' onClick={handleRegisterClick}>Get Started</button>
+              <button className='get-started-button' onClick={handleDashboardClick}>Get Started</button>
             </div>
             <div className="rightcontent-image">
               <img src="https://faimos.modeltheme.com/wp-content/uploads/2023/05/Main-slider_img.png" alt="home-image" loading='lazy'/>

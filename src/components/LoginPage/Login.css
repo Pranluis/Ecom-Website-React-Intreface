@@ -10,10 +10,11 @@ body {
     align-items: center;
     min-height: 90vh;
     padding: 40px 80px;
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    /* background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); */
 }
 
 .container {
+    /* background: linear-gradient(135deg, #c8a6ed 0%, #7e9dd3 100%); */
     width: 470px;
     height: auto;
     background-color: aliceblue;
@@ -89,17 +90,18 @@ body {
     color: #3494e9;
 }
 
-.container a {
+
+.signup-link {
     text-decoration: none;
-    font-weight: 700;
-    color: #3494e9;
-}
-
-.container a:hover {
-    text-decoration: underline;
-    color: #7402a1;
-}
-
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: inherit;
+  }
+  
+    
 .container .orsection {
     display: flex;
     justify-content: center;
