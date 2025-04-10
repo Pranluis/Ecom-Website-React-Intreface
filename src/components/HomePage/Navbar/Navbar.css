@@ -1,0 +1,474 @@
+/* ####### Normal desktop size laptops css ######### */
+.body{
+    width: 100%;
+    background: url('https://static.vecteezy.com/system/resources/previews/004/927/230/non_2x/abstract-geometric-blue-and-white-color-background-illustration-free-vector.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar{
+    background: transparent;
+    min-height: 700px;
+    max-width: 1540px;    
+}
+
+/* Navbar Top interaction Pannel */
+.top-navbar-header{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 25px 60px;
+    align-items: center;
+}
+
+.leftpart-logo-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    
+}
+
+.leftpart-logo-list #logo-text{
+    font-size: 35px;
+    color: black;
+    font-weight: 700;
+    margin-left: 3px;
+}
+
+/* #### Interaction options (Home, Platform, Resourses, Explore) css #######*/
+.interaction-list ul{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 0;
+    margin: 0;
+}
+
+.interaction-list ul li{
+    font-size: 17px;
+    position: relative;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.interaction-list ul li:hover{
+    color: rgb(213, 211, 192);
+}
+
+/* Interaction menu hover box styling*/
+ .hover-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 20px; /* Gap between li and hover box */
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 15px;
+    z-index: 1000;
+    min-width: 150px;
+    font-size: 14px;
+    color: #333;
+    display: none; /* Initially hidden */
+  }
+
+  /* Invisible bridge to keep hover state */
+  .hover-box:before {
+    content: '';
+    position: absolute;
+    top: -20px; /* Match gap size */
+    left: 0;
+    width: 100%;
+    height: 20px; /* Same as gap size */
+    background: transparent;
+  }
+
+ .hover-box p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .hover-box.show {
+    display: block;
+  }
+
+/* Hover box content styling */
+#hover-box-1 p{
+    font-size: 16px;
+    color: #555;
+}
+
+#hover-box-1 i{
+    margin-right: 7px;
+}
+
+#hover-box-1 p:hover{
+    color: #c07c2e;
+}
+
+#hover-box-2{
+    padding: 30px 40px;
+}
+
+#hover-box-2 .content{
+    gap: 75px;
+    display: flex;
+    width: 400px;
+    flex-wrap: wrap;
+}
+.content h2 {
+    font-size: 30px;
+    margin-bottom: 25px;
+    color: #333;
+  }
+  
+  .content p {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Align icon and text vertically */
+    gap: 10px; /* Space between icon and text */
+    margin: 0;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .content .icon {
+    width: 25px; /* Fixed width for all icons */
+    text-align: center; /* Center icons horizontally */
+  }
+  
+  .content .text {
+    flex-grow: 1; /* Ensure text takes up remaining space */
+    text-align: left;
+  }
+  
+  .content i {
+    font-size: 22px; /* Icon size */
+    color: #666; /* Icon color */
+  }
+  
+  .content p:hover span {
+    color: #3c73b7; /* Change icon color on hover */
+  }
+
+/* ################################# Right signup buttons Styling ############################################ */
+.rightpart-signup-out-buttons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.creator-button-signup{
+    border: none;
+    outline: none;
+    border-radius: 45px;
+    color: white;
+    background: #2684c7;
+    font-weight: 900;
+    font-size: medium;
+    padding: 13px 20px 13px 20px;
+}
+
+.creator-button-signup:hover{
+    background-color: black;
+}
+
+.brand-button-signup{
+    border: none;
+    outline: none;
+    border-radius: 45px;
+    color: white;
+    background: #e2813c;
+    font-weight: bolder;
+    font-size: medium;
+    padding: 13px 20px 13px 20px;
+}
+
+.brand-button-signup:hover{
+    background-color: black;
+}
+/* ############################################### */
+
+
+/* For smaller device interaction menu icon css */
+.menu-box{
+    display: none;
+    padding: 8px;
+    border: 1px solid silver;
+    border-radius: 6px;
+}
+
+.rightpart-signup-out-buttons i{
+    font-size: x-large;
+}
+
+.rightpart-signup-out-buttons i:hover{
+    color: rgb(107, 107, 107);
+}
+/* ##################################### */
+
+
+/* Headline and image middle content css */
+.middle-content{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 60px;
+    align-items: center;
+    margin-top: -35px;
+}
+
+.middle-headline{
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.middle-subheadline{
+    margin-top: 22px;
+    font-size: 20px;
+    color: rgb(48, 47, 47);
+}
+.leftcontent{
+    width: 55%;
+}
+
+.rightcontent-image{
+    width: 45%;
+}
+
+.rightcontent-image img{
+    max-width: 100%; /* Makes the image fit within the container */
+    height: auto;
+}
+
+/* ##################  Get started button styling  ######################### */
+.get-started-button{
+    border: none;
+    margin-top: 30px;
+    outline: none;
+    border-radius: 45px;
+    color: black;
+    background: #ffffff;
+    font-weight: bolder;
+    font-size: large;
+    padding: 14px 25px 14px 25px;
+}
+
+.get-started-button:hover{
+    background-color: black;
+    color: azure;
+}
+
+/* ############################################################################## */
+/* ######################## Media queries start here ######################## */
+@media (max-width: 480px) {
+    /* CSS rules for extra small devices */
+    .navbar{
+        font-size: 8px;
+    }
+    .leftpart-logo-list #logo-text{
+        font-size: 22px;
+    }
+    .top-navbar-header{
+        padding: 5px 10px;
+        background-color: rgb(251, 251, 251);
+    }
+    
+    .interaction-list ul{
+        font-size: 8px;
+    }
+    .menu-box{
+        display: block;
+    }
+    .interaction-list{
+        display: none;
+    }
+    .creator-button-signup{
+        display: none;
+    }
+    .brand-button-signup{
+        display: none;
+    }
+    .middle-content{
+        flex-direction: column;
+        padding-right: 25px;
+        margin-top: 50px;
+    }
+
+    .middle-content .leftcontent{
+        width: 100%;
+    }
+
+    .middle-content .rightcontent-image{
+        width: 100%;
+    }
+
+    .middle-headline{
+        font-size: 22px;
+        font-weight: 900;
+    }
+    
+    .middle-subheadline{
+        margin-top: 12px;
+        font-size: 13px;
+    }
+    .rightcontent-image img{
+        /* width: 300px; */
+        height: auto;
+        /* margin-left: -30px; */
+    }
+
+    .get-started-button{
+        margin-top: 50px;
+        font-weight: 800;
+        font-size: small;
+        padding: 7px 12px 7px 12px;
+    }
+}
+
+@media (min-width: 950px) and (max-width: 1300px){
+    .navbar{
+        font-size: 13px;
+    }
+    .leftpart-logo-list #logo-text{
+        font-size: 24px;
+    }
+
+    .interaction-list ul li{
+        font-size: 15px;
+    }
+    .creator-button-signup{
+        font-weight: 800;
+        font-size: 15px;
+        padding: 10px 30px 10px 30px;
+    }
+    .brand-button-signup{
+        font-weight: 800;
+        font-size: 15px;
+        padding: 10px 30px 10px 30px;
+    }  
+
+    .middle-headline{
+        font-size: 40px;
+        font-weight: 900;
+    }
+    
+    .middle-subheadline{
+        margin-top: 22px;
+        font-size: 17px;
+    }
+
+    .get-started-button{
+        margin-top: 50px;
+        font-weight: 800;
+        font-size: 13px;
+        padding: 10px 18px 10px 18px;
+    }
+}
+
+
+@media (min-width: 480px) and (max-width: 900px) {
+    /* For Tablets and medium big Size */
+    .navbar{
+        font-size: 11px;
+    }
+    .leftpart-logo-list #logo-text{
+        font-size: 25px;
+    }
+    .top-navbar-header{
+        padding: 15px 20px;
+        background-color: aliceblue;
+    }
+    
+    .interaction-list ul{
+        font-size: 11px;
+    }
+    .menu-box{
+        display: block;
+    }
+    .interaction-list{
+        display: none;
+    }
+
+    .creator-button-signup{
+        font-weight: 900;
+        font-size: x-small;
+        padding: 8px 10px 8px 10px;
+    }
+    .brand-button-signup{
+        font-weight: 900;
+        font-size: x-small;
+        padding: 8px 10px 8px 10px;
+    }
+    .middle-content{
+        flex-direction: column;
+        padding-right: 25px;
+        margin-top: 70px;
+    }
+
+    .middle-content .leftcontent{
+        width: 100%;
+    }
+
+    .middle-content .rightcontent-image{
+        width: 100%;
+    }
+
+    .middle-headline{
+        font-size: 35px;
+        font-weight: 900;
+    }
+    
+    .middle-subheadline{
+        margin-top: 22px;
+        font-size: 18px;
+    }
+
+    .get-started-button{
+        margin-top: 10px;
+        font-weight: 800;
+        font-size: small;
+        padding: 7px 12px 7px 12px;
+    }
+  }
+
+
+@media (min-width: 1540px) {
+    /* CSS rules for extra large devices */
+    .body{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+    }  
+    /* .hover-box {
+        width: 400px;  
+      } */
+  }
+
+  /* ##################### Keyframes #################### */
+
+  @keyframes slideDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .hover-box {
+    animation: slideDown 0.8s ease forwards;
+    opacity: 0; /* Initial state */
+  }
+  
+  li:hover .hover-box {
+    animation: slideDown 0.3s ease forwards;
+    opacity: 1;
+  }
+
+  

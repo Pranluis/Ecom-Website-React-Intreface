@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './components/HomePage/Home';
+import HomePage from './components/HomePage/HomePage';
 import Login from './components/LoginPage/login'
 import RegisterPage from './components/RegisterPage/RegisterPage'
-import CRUD from './components/ExtraContent/CRUD';
+import CRUD from './components/ProductDash/CRUD';
+import Dashboard from './components/Dashboard/Dashboard';
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/product-management" element={<CRUD/>} />

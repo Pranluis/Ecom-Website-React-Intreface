@@ -1,0 +1,26 @@
+/* Initial hidden state */
+.hidden {
+  opacity: 0;
+  transform: translateY(70px);
+}
+
+/* Visible state with animation */
+.visible {
+  animation: fadeInUp 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* Keyframes for a smoother fade-in and slide-up effect */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(70px);
+  }
+  60% {
+    opacity: 0.9;
+    transform: translateY(35px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,182 @@
+/* ########### Default code ############# */
+.body3{
+    width: 100%;
+}
+
+.features{
+    background: transparent;
+    max-width: 1540px;
+}
+/* ########################################### */
+
+/*################ Feature container styling ################### */
+.feature-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.feature-box{
+    padding: 0px 0px 20px 0px;
+    width: 90%;
+    height: auto;
+    background: linear-gradient(60deg, rgb(186, 186, 213), white, rgb(212, 232, 235));
+    border-radius: 10px;
+}
+
+/* ######### Headers styling ############# */
+.feature-header{
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.feature-header p{
+    position: relative;
+    margin-right: 1rem;
+    margin-bottom: 20px;
+    font-size: 19px;
+}
+
+.feature-header p:after {
+    content: "";
+    position: absolute;
+    height: 15px;
+    width: 100px;
+    left: 50%;
+    top: calc(100% + 5px); /* Adjust the 5px to control the gap between the text and underline */
+    transform: translateX(-50%);
+    border-top: 5px solid red;
+    border-radius: 50%;
+  }
+
+
+/* ############# Feature items styling ############## */
+.feature-list{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.feature-item{
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transition: transform .2s;
+}
+
+.feature-item .feature-icon i{
+    border-radius: 10px;
+    font-size: 50px;
+    color: white;
+    padding: 12px;
+}
+
+.feature-item:hover {
+    transform: scale(1.1);
+}
+
+.feature-item .feature-text{
+    margin-top: 20px;
+}
+
+.feature-text p{
+    color: rgb(137, 137, 139);
+}
+
+#fea-icon-1{
+    background-color: rgb(192, 80, 84)
+}
+#fea-icon-2{
+    background-color: royalblue;
+}
+#fea-icon-3{
+    background-color: purple;
+}
+#fea-icon-4{
+    background-color: rgb(197, 197, 69);
+}
+/* #################################################### */
+
+
+/* ############################# Media Queries ############################################# */
+@media (min-width: 1540px) {
+    /* CSS rules for extra large devices */
+    .features{
+        width: 1540px;
+    }
+
+    .body3{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+    }  
+  }
+
+
+
+@media (min-width: 480px) and (max-width: 900px) {
+
+    
+    .feature-item{
+        width: 150px;
+        height: auto;   
+    }
+
+}
+
+@media (min-width: 950px) and (max-width: 1300px){
+    
+
+    .feature-item h2{
+        font-size: 15px;
+    }
+
+    .feature-item p{
+        font-size: 12px;
+    }
+
+    .feature-header{
+        font-size: 15px;
+    }
+
+    
+
+}
+
+@media (max-width: 480px) {
+    /* CSS rules for extra small devices */
+    .feature-item{
+        width: 100px;
+        height: auto;   
+        margin: 7px;
+    }
+
+    .feature-item h2{
+        font-size: 15px;
+    }
+
+    .feature-item p{
+        font-size: 12px;
+    }
+
+    .feature-header{
+        font-size: 15px;
+    }
+
+    .feature-item .feature-icon i{
+        font-size: 15px;
+        padding: 9px;
+    }
+    
+    
+}
