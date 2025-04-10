@@ -1,6 +1,7 @@
 // Navbar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaShoppingCart, FaUser, FaList, FaHome, FaSearch } from "react-icons/fa";
 
 function Dashboard() {
   const navbarStyle = {
@@ -76,67 +77,32 @@ function Dashboard() {
     <nav style={navbarStyle}>
       <div style={logoStyle}>
         <Link to="/" style={logoLinkStyle}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            style={logoIconStyle}
-          >
-            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-          </svg>
+          <FaHome style={logoIconStyle} size={32} />
           <span>FlexCart</span>
         </Link>
       </div>
+
       <ul style={navListStyle}>
         <li style={navItemStyle}>
-          <Link to="/users" style={navLinkStyle} onMouseOver={(e) => Object.assign(e.target.style, navLinkHoverStyle)} onMouseOut={(e) => Object.assign(e.target.style, navLinkStyle)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              style={navIconStyle}
-            >
-              <path d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 10c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-            </svg>
-            Users
-          </Link>
-        </li>
-        <li style={navItemStyle}>
           <Link to="/orders" style={navLinkStyle} onMouseOver={(e) => Object.assign(e.target.style, navLinkHoverStyle)} onMouseOut={(e) => Object.assign(e.target.style, navLinkStyle)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              style={navIconStyle}
-            >
-              <path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z" />
-            </svg>
+            <FaList style={navIconStyle} size={24} />
             Orders
           </Link>
         </li>
         <li style={navItemStyle}>
           <Link to="/carts" style={navLinkStyle} onMouseOver={(e) => Object.assign(e.target.style, navLinkHoverStyle)} onMouseOut={(e) => Object.assign(e.target.style, navLinkStyle)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              style={navIconStyle}
-            >
-              <path d="M17 18c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zM7 18c-1.1 0-1.99.9-1.99 2S6.1 22 7 22s2-.9 2-2-.9-2-2-2zM7 11V4h10v7l-5 3-5-3z" />
-            </svg>
+            <FaShoppingCart style={navIconStyle} size={24} />
             Cart Items
             <span style={cartCountStyle}>
               {/* Replace with your actual cart item count */}
               3
             </span>
+          </Link>
+        </li>
+        <li style={navItemStyle}>
+          <Link to="/users" style={navLinkStyle} onMouseOver={(e) => Object.assign(e.target.style, navLinkHoverStyle)} onMouseOut={(e) => Object.assign(e.target.style, navLinkStyle)}>
+            <FaUser style={navIconStyle} size={24} />
+            Users
           </Link>
         </li>
       </ul>
