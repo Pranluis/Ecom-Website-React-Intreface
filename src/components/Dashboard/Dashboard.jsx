@@ -1,4 +1,3 @@
-// Dashboard.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart, FaUser, FaList, FaHome, FaSearch } from "react-icons/fa";
@@ -11,20 +10,27 @@ function Dashboard() {
     setDropdownOpen(!dropdownOpen);
   };
 
+  const Dark_blue_gray = '#2c3e50'; 
+  const bright_blue = '#3498db'; 
+  const orange_red = '#e67e22'; 
+  const backgroundColor = '#f0f8ff'; // Light blue
+
   const navbarStyle = {
-    backgroundColor: '#f8f9fa',
-    padding: '1rem 2rem',
+    backgroundColor: backgroundColor,
+    padding: '1.5rem 2.5rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    borderBottom: '1px solid #e0e0e0',
+    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15)',
+    borderBottom: `2px solid ${bright_blue}`,
+    borderRadius: '8px',
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
   };
 
   const logoStyle = {
-    fontSize: '1.5rem',
+    fontSize: '2rem',
     fontWeight: 'bold',
-    color: '#333',
+    color: Dark_blue_gray,
     display: 'flex',
     alignItems: 'center',
     textDecoration: 'none',
@@ -38,30 +44,33 @@ function Dashboard() {
   };
 
   const logoIconStyle = {
-    marginRight: '0.5rem',
-    fill: '#007bff',
+    marginRight: '0.75rem',
+    fill: bright_blue,
   };
 
   const searchBarStyle = {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: '#fff',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    padding: '0.5rem',
+    backgroundColor: 'white',
+    border: `1px solid ${bright_blue}`,
+    borderRadius: '8px',
+    padding: '0.75rem 1rem',
     width: '40%',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
   };
 
   const searchInputStyle = {
     border: 'none',
     outline: 'none',
     width: '100%',
-    padding: '0.5rem',
+    padding: '0.75rem',
+    fontSize: '1rem',
+    color: Dark_blue_gray,
   };
 
   const searchIconStyle = {
-    marginRight: '0.5rem',
-    color: '#777',
+    marginRight: '0.75rem',
+    color: bright_blue,
   };
 
   const navListStyle = {
@@ -69,66 +78,71 @@ function Dashboard() {
     padding: 0,
     margin: 0,
     display: 'flex',
+    alignItems: 'center',
   };
 
   const navItemStyle = {
-    marginLeft: '1.5rem',
+    marginLeft: '2rem',
     position: 'relative',
   };
 
   const navLinkStyle = {
     textDecoration: 'none',
-    color: '#555',
-    fontWeight: 500,
+    color: Dark_blue_gray,
+    fontWeight: 600,
     display: 'flex',
     alignItems: 'center',
-    transition: 'color 0.3s ease',
+    transition: 'color 0.2s ease-in-out, transform 0.2s ease-in-out',
     cursor: 'pointer',
   };
 
   const navLinkHoverStyle = {
-    color: '#007bff',
+    color: orange_red,
+    transform: 'scale(1.05)',
   };
 
   const navIconStyle = {
-    marginRight: '0.3rem',
-    fill: '#777',
+    marginRight: '0.5rem',
+    fill: bright_blue,
   };
 
   const cartCountStyle = {
-    backgroundColor: '#dc3545',
+    backgroundColor: orange_red,
     color: 'white',
     borderRadius: '50%',
-    padding: '0.2rem 0.5rem',
-    fontSize: '0.8rem',
+    padding: '0.3rem 0.6rem',
+    fontSize: '0.9rem',
     marginLeft: '0.5rem',
   };
 
   const dropdownMenuStyle = {
     display: dropdownOpen ? 'block' : 'none',
     position: 'absolute',
-    top: '100%',
+    top: '110%',
     left: 0,
-    backgroundColor: '#fff',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    borderRadius: '4px',
+    backgroundColor: 'white',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    borderRadius: '8px',
     overflow: 'hidden',
-    zIndex: 1,
+    zIndex: 10,
+    minWidth: '150px',
     transition: 'opacity 0.3s ease, transform 0.3s ease',
     opacity: dropdownOpen ? 1 : 0,
     transform: dropdownOpen ? 'translateY(0)' : 'translateY(-10px)',
   };
 
   const dropdownItemStyle = {
-    padding: '0.5rem 1rem',
+    padding: '0.75rem 1.25rem',
     textDecoration: 'none',
-    color: '#555',
+    color: Dark_blue_gray,
     display: 'block',
-    transition: 'background-color 0.3s ease',
+    transition: 'background-color 0.2s ease-in-out',
+    fontWeight: 500,
   };
 
   const dropdownItemHoverStyle = {
     backgroundColor: '#f8f9fa',
+    color: orange_red,
   };
 
   return (
@@ -148,15 +162,25 @@ function Dashboard() {
 
         <ul style={navListStyle}>
           <li style={navItemStyle}>
-            <Link to="/orders" style={navLinkStyle} onMouseOver={(e) => Object.assign(e.target.style, navLinkHoverStyle)} onMouseOut={(e) => Object.assign(e.target.style, navLinkStyle)}>
+            <Link
+              to="/orders"
+              style={navLinkStyle}
+              onMouseOver={(e) => Object.assign(e.currentTarget.style, navLinkHoverStyle)}
+              onMouseOut={(e) => Object.assign(e.currentTarget.style, { ...navLinkStyle, color: Dark_blue_gray })}
+            >
               <FaList style={navIconStyle} size={24} />
               Orders
             </Link>
           </li>
           <li style={navItemStyle}>
-            <Link to="/carts" style={navLinkStyle} onMouseOver={(e) => Object.assign(e.target.style, navLinkHoverStyle)} onMouseOut={(e) => Object.assign(e.target.style, navLinkStyle)}>
+            <Link
+              to="/carts"
+              style={navLinkStyle}
+              onMouseOver={(e) => Object.assign(e.currentTarget.style, navLinkHoverStyle)}
+              onMouseOut={(e) => Object.assign(e.currentTarget.style, { ...navLinkStyle, color: Dark_blue_gray })}
+            >
               <FaShoppingCart style={navIconStyle} size={24} />
-              Cart Items
+              Cart
               <span style={cartCountStyle}>
                 {/* Replace with your actual cart item count */}
                 3
@@ -164,21 +188,46 @@ function Dashboard() {
             </Link>
           </li>
           <li style={navItemStyle}>
-            <div style={navLinkStyle} onClick={toggleDropdown}>
+            <div
+              style={navLinkStyle}
+              onClick={toggleDropdown}
+              onMouseOver={(e) => Object.assign(e.currentTarget.style, navLinkHoverStyle)}
+              onMouseOut={(e) => Object.assign(e.currentTarget.style, { ...navLinkStyle, color: Dark_blue_gray })}
+            >
               <FaUser style={navIconStyle} size={24} />
-              Users
+              Account
             </div>
             <div style={dropdownMenuStyle}>
-              <Link to="/profile" style={dropdownItemStyle} onMouseOver={(e) => Object.assign(e.target.style, dropdownItemHoverStyle)} onMouseOut={(e) => Object.assign(e.target.style, dropdownItemStyle)}>
+              <Link
+                to="/profile"
+                style={dropdownItemStyle}
+                onMouseOver={(e) => Object.assign(e.currentTarget.style, dropdownItemHoverStyle)}
+                onMouseOut={(e) => Object.assign(e.currentTarget.style, dropdownItemStyle)}
+              >
                 My Profile
               </Link>
-              <Link to="/orders" style={dropdownItemStyle} onMouseOver={(e) => Object.assign(e.target.style, dropdownItemHoverStyle)} onMouseOut={(e) => Object.assign(e.target.style, dropdownItemStyle)}>
+              <Link
+                to="/orders"
+                style={dropdownItemStyle}
+                onMouseOver={(e) => Object.assign(e.currentTarget.style, dropdownItemHoverStyle)}
+                onMouseOut={(e) => Object.assign(e.currentTarget.style, dropdownItemStyle)}
+              >
                 Orders
               </Link>
-              <Link to="/payment-history" style={dropdownItemStyle} onMouseOver={(e) => Object.assign(e.target.style, dropdownItemHoverStyle)} onMouseOut={(e) => Object.assign(e.target.style, dropdownItemStyle)}>
+              <Link
+                to="/payment-history"
+                style={dropdownItemStyle}
+                onMouseOver={(e) => Object.assign(e.currentTarget.style, dropdownItemHoverStyle)}
+                onMouseOut={(e) => Object.assign(e.currentTarget.style, dropdownItemStyle)}
+              >
                 Payment History
               </Link>
-              <Link to="/logout" style={dropdownItemStyle} onMouseOver={(e) => Object.assign(e.target.style, dropdownItemHoverStyle)} onMouseOut={(e) => Object.assign(e.target.style, dropdownItemStyle)}>
+              <Link
+                to="/logout"
+                style={dropdownItemStyle}
+                onMouseOver={(e) => Object.assign(e.currentTarget.style, dropdownItemHoverStyle)}
+                onMouseOut={(e) => Object.assign(e.currentTarget.style, dropdownItemStyle)}
+              >
                 Logout
               </Link>
             </div>
