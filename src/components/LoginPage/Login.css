@@ -4,14 +4,13 @@
     box-sizing: border-box;
 }
 
-body {
+/* body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 90vh;
     padding: 40px 80px;
-    /* background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); */
-}
+} */
 
 .container {
     /* background: linear-gradient(135deg, #c8a6ed 0%, #7e9dd3 100%); */
