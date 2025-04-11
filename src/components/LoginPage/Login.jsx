@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
  
 const BASE_URL = "https://localhost:7136/api/Users";
  
@@ -36,7 +39,7 @@ const Login = () => {
             if (error.response && error.response.data.errors) {
                 setErrors(error.response.data.errors);
             } else {
-                alert('Invalid credentials!');
+                toast.info('Invalid credentials!');
             }
         } finally {
             setLoading(false);
@@ -45,6 +48,7 @@ const Login = () => {
  
     return (
         <div className="container">
+            <ToastContainer />
             <form onSubmit={handleSubmit}>
                 <div className="header">
                     <h1>Login</h1>

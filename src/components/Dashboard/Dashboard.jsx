@@ -181,17 +181,6 @@ function Dashboard() {
         <ul style={navListStyle}>
           <li style={navItemStyle}>
             <Link
-              to="/orders"
-              style={navLinkStyle}
-              onMouseOver={(e) => Object.assign(e.currentTarget.style, navLinkHoverStyle)}
-              onMouseOut={(e) => Object.assign(e.currentTarget.style, { ...navLinkStyle, color: Dark_blue_gray })}
-            >
-              <FaList style={navIconStyle} size={24} />
-              Orders
-            </Link>
-          </li>
-          <li style={navItemStyle}>
-            <Link
               to="/carts"
               style={navLinkStyle}
               onMouseOver={(e) => Object.assign(e.currentTarget.style, navLinkHoverStyle)}
