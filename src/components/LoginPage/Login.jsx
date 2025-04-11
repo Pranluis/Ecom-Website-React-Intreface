@@ -39,7 +39,7 @@ const Login = () => {
             if (error.response && error.response.data.errors) {
                 setErrors(error.response.data.errors);
             } else {
-                toast.info('Invalid credentials!');
+                toast.error('Invalid credentials!');
             }
         } finally {
             setLoading(false);
