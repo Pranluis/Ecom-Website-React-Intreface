@@ -1,23 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
-import './RegisterPage.css';
 
-const API_URL = "http://localhost:5201/api/Users";
 
-const RegisterPage = () => {
+const BASE_URL = "https://localhost:7136/api/Users";
+
+const Registration = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     phoneNumber: "",
     address: "",
-
   });
 
   // Add a new user (POST) using query parameters
   const addUser = async () => {
     try {
-      const addUrl = `${API_URL}?Name=${formData.name}&Email=${formData.email}&Password=${formData.password}&Phonenumber=${formData.phoneNumber}&Address=${formData.address}`;
+      const addUrl = `${BASE_URL}?Name=${formData.name}&Email=${formData.email}&Password=${formData.password}&Phonenumber=${formData.phoneNumber}&Address=${formData.address}`;
       console.log("Adding user with URL:", addUrl);
 
       await axios.post(addUrl);
@@ -46,9 +45,9 @@ const RegisterPage = () => {
 
   return (
     <div className="container">
-      <h2>Register</h2>
+      <h2>User Registration</h2>
 
-      {/* Add User Form */}
+      {/* Registration Form */}
       <form
         className="form"
         onSubmit={(e) => {
@@ -56,50 +55,60 @@ const RegisterPage = () => {
           addUser();
         }}
       >
-        <div className="input-field">
+        <div className="form-group">
+          <label>Name:</label>
           <input
             type="text"
             name="name"
-            placeholder="Name"
             value={formData.name}
             onChange={handleInputChange}
             required
           />
+        </div>
+        <div className="form-group">
+          <label>Email:</label>
           <input
             type="email"
             name="email"
-            placeholder="Email"
             value={formData.email}
             onChange={handleInputChange}
             required
           />
+        </div>
+        <div className="form-group">
+          <label>Password:</label>
           <input
             type="password"
             name="password"
-            placeholder="Password"
             value={formData.password}
             onChange={handleInputChange}
             required
           />
+        </div>
+        <div className="form-group">
+          <label>Phone Number:</label>
           <input
             type="text"
             name="phoneNumber"
-            placeholder="Phone Number"
             value={formData.phoneNumber}
             onChange={handleInputChange}
             required
           />
+        </div>
+        <div className="form-group">
+          <label>Address:</label>
           <input
             type="text"
             name="address"
-            placeholder="Address"
             value={formData.address}
             onChange={handleInputChange}
             required
           />
         </div>
         <div className="button">
-          <input type="submit" className="btn" value="Register" />
+          <button type="submit" className="btn btn-primary">
+            Register
+          </button>
           <button type="button" className="btn btn-secondary" onClick={resetForm}>
             Reset
           </button>
@@ -109,4 +118,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default Registration;
