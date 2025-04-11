@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import './Profile.css';
 
 const BASE_URL = "https://localhost:7136/api/Users";
 
