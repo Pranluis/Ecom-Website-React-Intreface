@@ -1,22 +1,38 @@
-// Navbar.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaShoppingCart, FaUser, FaList, FaHome, FaSearch } from "react-icons/fa";
+import Categories from '../Categories/Categories';
 
 function Dashboard() {
+  const [searchTerm, setSearchTerm] = useState('');
+  // const navigate = useNavigate();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const Dark_blue_gray = '#2c3e50'; 
+  const bright_blue = '#3498db'; 
+  const orange_red = '#e67e22'; 
+  const backgroundColor = '#f0f8ff'; // Light blue
+
   const navbarStyle = {
-    backgroundColor: '#f8f9fa',
-    padding: '1rem 2rem',
+    backgroundColor: backgroundColor,
+    padding: '1.5rem 2.5rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    borderBottom: '1px solid #e0e0e0',
+    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15)',
+    borderBottom: `2px solid ${bright_blue}`,
+    borderRadius: '8px',
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
   };
 
   const logoStyle = {
-    fontSize: '1.5rem',
+    fontSize: '2rem',
     fontWeight: 'bold',
-    color: '#333',
+    color: Dark_blue_gray,
     display: 'flex',
     alignItems: 'center',
     textDecoration: 'none',
@@ -30,8 +46,33 @@ function Dashboard() {
   };
 
   const logoIconStyle = {
-    marginRight: '0.5rem',
-    fill: '#007bff',
+    marginRight: '0.75rem',
+    fill: bright_blue,
+  };
+
+  const searchBarStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    border: `1px solid ${bright_blue}`,
+    borderRadius: '8px',
+    padding: '0.75rem 1rem',
+    width: '40%',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
+  };
+
+  const searchInputStyle = {
+    border: 'none',
+    outline: 'none',
+    width: '100%',
+    padding: '0.75rem',
+    fontSize: '1rem',
+    color: Dark_blue_gray,
+  };
+
+  const searchIconStyle = {
+    marginRight: '0.75rem',
+    color: bright_blue,
   };
 
   const navListStyle = {
@@ -39,108 +80,180 @@ function Dashboard() {
     padding: 0,
     margin: 0,
     display: 'flex',
+    alignItems: 'center',
   };
 
   const navItemStyle = {
-    marginLeft: '1.5rem',
+    marginLeft: '2rem',
+    position: 'relative',
   };
 
   const navLinkStyle = {
     textDecoration: 'none',
-    color: '#555',
-    fontWeight: 500,
+    color: Dark_blue_gray,
+    fontWeight: 600,
     display: 'flex',
     alignItems: 'center',
-    transition: 'color 0.3s ease',
+    transition: 'color 0.2s ease-in-out, transform 0.2s ease-in-out',
+    cursor: 'pointer',
   };
 
   const navLinkHoverStyle = {
-    color: '#007bff',
+    color: orange_red,
+    transform: 'scale(1.05)',
   };
 
   const navIconStyle = {
-    marginRight: '0.3rem',
-    fill: '#777',
+    marginRight: '0.5rem',
+    fill: bright_blue,
   };
 
   const cartCountStyle = {
-    backgroundColor: '#dc3545',
+    backgroundColor: orange_red,
     color: 'white',
     borderRadius: '50%',
-    padding: '0.2rem 0.5rem',
-    fontSize: '0.8rem',
+    padding: '0.3rem 0.6rem',
+    fontSize: '0.9rem',
     marginLeft: '0.5rem',
   };
 
+  const dropdownMenuStyle = {
+    display: dropdownOpen ? 'block' : 'none',
+    position: 'absolute',
+    top: '110%',
+    left: 0,
+    backgroundColor: 'white',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    borderRadius: '8px',
+    overflow: 'hidden',
+    zIndex: 10,
+    minWidth: '150px',
+    transition: 'opacity 0.3s ease, transform 0.3s ease',
+    opacity: dropdownOpen ? 1 : 0,
+    transform: dropdownOpen ? 'translateY(0)' : 'translateY(-10px)',
+  };
+
+  const dropdownItemStyle = {
+    padding: '0.75rem 1.25rem',
+    textDecoration: 'none',
+    color: Dark_blue_gray,
+    display: 'block',
+    transition: 'background-color 0.2s ease-in-out',
+    fontWeight: 500,
+  };
+
+  const dropdownItemHoverStyle = {
+    backgroundColor: '#f8f9fa',
+    color: orange_red,
+  };
+  const handleSearchInputChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault(); 
+    if (searchTerm.trim()) {
+      navigate(`/search?query=${encodeURIComponent(searchTerm.trim())}`);
+      setSearchTerm(''); // Clear the input after submission
+    }
+  };
   return (
-    <nav style={navbarStyle}>
-      <div style={logoStyle}>
-        <Link to="/" style={logoLinkStyle}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            style={logoIconStyle}
-          >
-            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-          </svg>
-          <span>FlexCart</span>
-        </Link>
-      </div>
-      <ul style={navListStyle}>
-        <li style={navItemStyle}>
-          <Link to="/users" style={navLinkStyle} onMouseOver={(e) => Object.assign(e.target.style, navLinkHoverStyle)} onMouseOut={(e) => Object.assign(e.target.style, navLinkStyle)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              style={navIconStyle}
-            >
-              <path d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 10c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-            </svg>
-            Users
+    <div>
+      <nav style={navbarStyle}>
+        <div style={logoStyle}>
+          <Link to="/" style={logoLinkStyle}>
+            <FaHome style={logoIconStyle} size={32} />
+            <span>FlexCart</span>
           </Link>
-        </li>
-        <li style={navItemStyle}>
-          <Link to="/orders" style={navLinkStyle} onMouseOver={(e) => Object.assign(e.target.style, navLinkHoverStyle)} onMouseOut={(e) => Object.assign(e.target.style, navLinkStyle)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              style={navIconStyle}
+        </div>
+
+        <form style={searchBarStyle} onSubmit={handleSearchSubmit}> {/* Wrap input in form */}
+          <FaSearch style={searchIconStyle} size={20} />
+          <input
+            type="text"
+            placeholder="Search..."
+            style={searchInputStyle}
+            value={searchTerm}
+            onChange={handleSearchInputChange}
+          />
+        </form>
+
+        <ul style={navListStyle}>
+          <li style={navItemStyle}>
+            <Link
+              to="/orders"
+              style={navLinkStyle}
+              onMouseOver={(e) => Object.assign(e.currentTarget.style, navLinkHoverStyle)}
+              onMouseOut={(e) => Object.assign(e.currentTarget.style, { ...navLinkStyle, color: Dark_blue_gray })}
             >
-              <path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z" />
-            </svg>
-            Orders
-          </Link>
-        </li>
-        <li style={navItemStyle}>
-          <Link to="/carts" style={navLinkStyle} onMouseOver={(e) => Object.assign(e.target.style, navLinkHoverStyle)} onMouseOut={(e) => Object.assign(e.target.style, navLinkStyle)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              style={navIconStyle}
+              <FaList style={navIconStyle} size={24} />
+              Orders
+            </Link>
+          </li>
+          <li style={navItemStyle}>
+            <Link
+              to="/carts"
+              style={navLinkStyle}
+              onMouseOver={(e) => Object.assign(e.currentTarget.style, navLinkHoverStyle)}
+              onMouseOut={(e) => Object.assign(e.currentTarget.style, { ...navLinkStyle, color: Dark_blue_gray })}
             >
-              <path d="M17 18c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zM7 18c-1.1 0-1.99.9-1.99 2S6.1 22 7 22s2-.9 2-2-.9-2-2-2zM7 11V4h10v7l-5 3-5-3z" />
-            </svg>
-            Cart Items
-            <span style={cartCountStyle}>
-              {/* Replace with your actual cart item count */}
-              3
-            </span>
-          </Link>
-        </li>
-      </ul>
-    </nav>
+              <FaShoppingCart style={navIconStyle} size={24} />
+              Cart
+              <span style={cartCountStyle}>
+                {/* Replace with your actual cart item count */}
+                3
+              </span>
+            </Link>
+          </li>
+          <li style={navItemStyle}>
+            <div
+              style={navLinkStyle}
+              onClick={toggleDropdown}
+              onMouseOver={(e) => Object.assign(e.currentTarget.style, navLinkHoverStyle)}
+              onMouseOut={(e) => Object.assign(e.currentTarget.style, { ...navLinkStyle, color: Dark_blue_gray })}
+            >
+              <FaUser style={navIconStyle} size={24} />
+              Account
+            </div>
+            <div style={dropdownMenuStyle}>
+              <Link
+                to="/profile"
+                style={dropdownItemStyle}
+                onMouseOver={(e) => Object.assign(e.currentTarget.style, dropdownItemHoverStyle)}
+                onMouseOut={(e) => Object.assign(e.currentTarget.style, dropdownItemStyle)}
+              >
+                My Profile
+              </Link>
+              <Link
+                to="/orders"
+                style={dropdownItemStyle}
+                onMouseOver={(e) => Object.assign(e.currentTarget.style, dropdownItemHoverStyle)}
+                onMouseOut={(e) => Object.assign(e.currentTarget.style, dropdownItemStyle)}
+              >
+                Orders
+              </Link>
+              <Link
+                to="/payment-history"
+                style={dropdownItemStyle}
+                onMouseOver={(e) => Object.assign(e.currentTarget.style, dropdownItemHoverStyle)}
+                onMouseOut={(e) => Object.assign(e.currentTarget.style, dropdownItemStyle)}
+              >
+                Payment History
+              </Link>
+              <Link
+                to="/logout"
+                style={dropdownItemStyle}
+                onMouseOver={(e) => Object.assign(e.currentTarget.style, dropdownItemHoverStyle)}
+                onMouseOut={(e) => Object.assign(e.currentTarget.style, dropdownItemStyle)}
+              >
+                Logout
+              </Link>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <Categories />
+    </div>
   );
 }
 
