@@ -7,7 +7,7 @@ import RegisterPage from './components/RegisterPage/RegisterPage'
 import CRUD from './components/ProductDash/CRUD';
 import Dashboard from './components/Dashboard/Dashboard';
 import CartPage from './components/CartPage/CartPage';
-
+import SearchPage from './components/SearchPage/Searchpage';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -22,6 +22,7 @@ function App() {
           <Route path="/product-management" element={<CRUD/>} />
           <Route path="/dashboard" element={<Dashboard/>} />
           <Route path="/carts" element={<CartPage/>} />
+          <Route path="/search" element={<SearchPage />} />
         </Routes>
       </Router>
     </>

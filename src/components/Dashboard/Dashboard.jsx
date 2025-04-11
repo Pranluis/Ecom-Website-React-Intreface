@@ -4,6 +4,8 @@ import { FaShoppingCart, FaUser, FaList, FaHome, FaSearch } from "react-icons/fa
 import Categories from '../Categories/Categories';
 
 function Dashboard() {
+  const [searchTerm, setSearchTerm] = useState('');
+  // const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -144,7 +146,17 @@ function Dashboard() {
     backgroundColor: '#f8f9fa',
     color: orange_red,
   };
+  const handleSearchInputChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
+  const handleSearchSubmit = (event) => {
+    event.preventDefault(); 
+    if (searchTerm.trim()) {
+      navigate(`/search?query=${encodeURIComponent(searchTerm.trim())}`);
+      setSearchTerm(''); // Clear the input after submission
+    }
+  };
   return (
     <div>
       <nav style={navbarStyle}>
@@ -155,10 +167,16 @@ function Dashboard() {
           </Link>
         </div>
 
-        <div style={searchBarStyle}>
+        <form style={searchBarStyle} onSubmit={handleSearchSubmit}> {/* Wrap input in form */}
           <FaSearch style={searchIconStyle} size={20} />
-          <input type="text" placeholder="Search..." style={searchInputStyle} />
-        </div>
+          <input
+            type="text"
+            placeholder="Search..."
+            style={searchInputStyle}
+            value={searchTerm}
+            onChange={handleSearchInputChange}
+          />
+        </form>
 
         <ul style={navListStyle}>
           <li style={navItemStyle}>
