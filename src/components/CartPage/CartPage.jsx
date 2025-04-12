@@ -1,17 +1,17 @@
-import React from 'react'
-import './CartPage.css'
+import React from 'react';
+import Navbar from '../Navbar/Navbar';
+import './CartPage.css';
 
 const CartPage = () => {
   return (
     <>
-        <div className="navbar-header">
-            This is Navbar
-        </div>
-        <div className="main-container">
-            Contents - TODO
-        </div>
+      <Navbar /> 
+      <div className="main-container">
+        Contents - TODO
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default CartPage
+export default CartPage;
+
