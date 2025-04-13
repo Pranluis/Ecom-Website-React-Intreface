@@ -40,7 +40,6 @@ const products = [
     discount: '50% off',
     rating: '4.6',
     reviews: '1,234',
-    
     img: 'https://rukminim2.flixcart.com/image/612/612/k1nw9zk0/stuffed-toy/y/n/t/cozy-cuddles-soft-and-huggable-jumbo-cream-teddy-american-bear-original-imafk7mfcfcpzzht.jpeg?q=70',
   },
   {
@@ -67,23 +66,25 @@ const products = [
 
 const ProductList = () => {
   return (
-    <div className="product-list">
-      {products.map((product) => (
-        <div key={product.id} className="product-card">
-          <img src={product.img} alt={product.name} />
-          <div className="product-name">{product.name}</div>
-          <div className="product-rating">
-            <span className="star">{product.rating}★</span>
-            <span className="reviews">({product.reviews})</span>
+    <div className="product-section">
+      <h2 className="section-heading">Products Available on Our Platform</h2>
+      <div className="product-list">
+        {products.map((product) => (
+          <div key={product.id} className="product-card">
+            <img src={product.img} alt={product.name} />
+            <div className="product-name">{product.name}</div>
+            <div className="product-rating">
+              <span className="star">{product.rating}★</span>
+              <span className="reviews">({product.reviews})</span>
+            </div>
+            <div className="product-price">
+              <span className="new-price">{product.price}</span>
+              <span className="old-price">{product.oldPrice}</span>
+              <span className="discount">{product.discount}</span>
+            </div>
           </div>
-          <div className="product-price">
-            <span className="new-price">{product.price}</span>
-            <span className="old-price">{product.oldPrice}</span>
-            <span className="discount">{product.discount}</span>
-          </div>
-          <div className="product-offer">{product.offer}</div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

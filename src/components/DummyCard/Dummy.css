@@ -1,4 +1,11 @@
-:root {
+.section-heading {
+    text-align: center;
+    font-size: 28px;
+    margin: 30px 0 20px;
+    color: #2c3e50; /* Dark blue gray */
+  }
+  
+  :root {
     --dark-blue-gray: #2c3e50;
     --bright-blue: #3498db;
     --orange-red: #e67e22;
@@ -93,4 +100,3 @@
     color: var(--bright-blue);
     font-size: 13px;
   }
-  
