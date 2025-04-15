@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import './RegisterPage.css';
 
-const BASE_URL = "https://localhost:7136/api/Users";
+const BASE_URL = "http://localhost:5201/api/Users";
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -20,14 +20,26 @@ const Registration = () => {
       const addUrl = `${BASE_URL}?Name=${formData.name}&Email=${formData.email}&Password=${formData.password}&Phonenumber=${formData.phoneNumber}&Address=${formData.address}`;
       console.log("Adding user with URL:", addUrl);
 
-      await axios.post(addUrl);
+      const response = await axios.post(addUrl); // No request body needed here
+      console.log("Registration successful:", response.data);
       resetForm();
+      // Optionally, redirect the user or show a success message
     } catch (error) {
-      console.error("Error adding user:", error.response || error.message);
+      console.error("Error adding user:", error.response ? error.response.data : error.message);
+      // Log the detailed error response from the server
+      if (error.response && error.response.data) {
+        console.log("Server Error Details:", error.response.data);
+      }
+      // Optionally, display an error message to the user
     }
   };
 
-  // Reset the form
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
   const resetForm = () => {
     setFormData({
       name: "",
@@ -36,12 +48,6 @@ const Registration = () => {
       phoneNumber: "",
       address: "",
     });
-  };
-
-  // Handle form input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
   };
 
   return (

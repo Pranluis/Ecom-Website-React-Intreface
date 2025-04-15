@@ -3,6 +3,9 @@ import Navbar from '../Navbar/Navbar';
 import './CartPage.css';
 
 const CartPage = () => {
+
+  
+
   return (
     <>
       <Navbar />

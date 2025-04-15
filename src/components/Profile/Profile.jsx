@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import './Profile.css';
 
-const BASE_URL = "https://localhost:7136/api/Users";
+const BASE_URL = "http://localhost:5201/api/Users";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
