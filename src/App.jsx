@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import HomePage from './components/HomePage/HomePage';
 import Login from './components/LoginPage/Login';
 import RegisterPage from './components/RegisterPage/RegisterPage'
@@ -8,6 +9,7 @@ import CRUD from './components/ProductDash/CRUD';
 import Dashboard from './components/Dashboard/Dashboard';
 import CartPage from './components/CartPage/CartPage';
 import Profile from './components/Profile/Profile';
+import Card from './components/Card/Card';
 
 
 
@@ -25,8 +27,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard/>} />
           <Route path="/carts" element={<CartPage/>} />
           <Route path="/profile" element={<Profile/>} />
-          
-        
+          <Route path="/card" element={<Card/>}/>
         </Routes>
       </Router>
     </>

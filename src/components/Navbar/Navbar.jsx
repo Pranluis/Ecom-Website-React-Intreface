@@ -153,7 +153,7 @@ function Dashboard() {
   const handleSearchSubmit = (event) => {
     event.preventDefault(); 
     if (searchTerm.trim()) {
-      navigate(`/search?query=${encodeURIComponent(searchTerm.trim())}`);
+      // navigate(`/search?query=${encodeURIComponent(searchTerm.trim())}`);
       setSearchTerm(''); // Clear the input after submission
     }
   };
