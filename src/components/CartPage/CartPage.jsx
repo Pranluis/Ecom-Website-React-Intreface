@@ -1,6 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 import './CartPage.css';
+
 const cartItems = [
   {
     id: 1,
@@ -19,9 +20,11 @@ const cartItems = [
     img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/ethnic-set/z/w/r/s-skd4008-mustrad-j-new-ethnic-4-you-original-imah8ugjny9dhstf.jpeg?q=70',
   },
 ];
- 
+
 const CartPage = () => {
+
   
+
   return (
     <>
       <Navbar />
@@ -42,19 +45,19 @@ const CartPage = () => {
             </div>
           ))}
         </div>
- 
+
         <div className="order-summary">
           <h2>Price Details</h2>
           <p>Price (2 items): ₹4,298</p>
           <p>Platform Fee: ₹0</p>
           <p>Delivery Charges: Free</p>
-          <h3>Total Amount: ₹4,298 </h3>
+          <h3>Total Amount: ₹4,298</h3>
           <p className="save-text">You will save ₹3,500 on this order.</p>
-          <button className="place-order-button" onClick={handlePlaceOrderClick}>PLACE ORDER</button>
+          <button className="place-order-button">PLACE ORDER</button>
         </div>
       </div>
     </>
   );
 };
- 
+
 export default CartPage;

@@ -5,7 +5,7 @@ import './RegisterPage.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const BASE_URL = "https://localhost:7136/api/Users";
+const BASE_URL = "http://localhost:5201/api/Users";
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -70,6 +70,7 @@ const Registration = () => {
       await axios.post(addUrl);
       toast.success("Successfully registered!");
       resetForm();
+      // Optionally, redirect the user or show a success message
     } catch (error) {
       if (error.response && error.response.status === 409) {
         setErrors({ ...errors, email: "Email already exists" });
