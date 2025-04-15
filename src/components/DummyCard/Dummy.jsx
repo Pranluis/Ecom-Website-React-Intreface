@@ -52,16 +52,16 @@ const products = [
     reviews: '34,567',
     img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/headphone/z/v/y/-original-imagmuggusa94g3u.jpeg?q=70',
   },
-  {
-    id: 6,
-    name: 'Kids School Bag - Unicorn Print',
-    price: '₹649',
-    oldPrice: '₹1,099',
-    discount: '41% off',
-    rating: '4.2',
-    reviews: '876',
-    img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/bag/t/u/t/29-cute-unicorn-soft-plush-backpack-bag-for-girls-kids-for-original-imah36f69g6jxusu.jpeg?q=70',
-  },
+  // {
+  //   id: 6,
+  //   name: 'Kids School Bag - Unicorn Print',
+  //   price: '₹649',
+  //   oldPrice: '₹1,099',
+  //   discount: '41% off',
+  //   rating: '4.2',
+  //   reviews: '876',
+  //   img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/bag/t/u/t/29-cute-unicorn-soft-plush-backpack-bag-for-girls-kids-for-original-imah36f69g6jxusu.jpeg?q=70',
+  // },
 ];
 
 const ProductList = () => {
