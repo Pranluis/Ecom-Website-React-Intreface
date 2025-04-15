@@ -29,7 +29,7 @@ const Login = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post('https://localhost:7136/api/Auth/login', formData);
+            const response = await axios.post('http://localhost:5201/api/Auth/login', formData);
             const { token, userId } = response.data;
             localStorage.setItem('token', token);
             localStorage.setItem('userId', userId);
