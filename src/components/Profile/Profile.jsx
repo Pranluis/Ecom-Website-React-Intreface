@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import './Profile.css';
 
@@ -16,13 +17,15 @@ const Profile = () => {
     phoneNumber: '',
     address: ''
   });
-
+ 
+  const navigate = useNavigate();
+ 
   useEffect(() => {
     const fetchUser = async () => {
       const userId = localStorage.getItem('userId');
       const token = localStorage.getItem('token');
       if (!userId || !token) {
-        alert("User ID or token is missing.");
+        navigate('/login');
         return;
       }
       try {
@@ -39,14 +42,18 @@ const Profile = () => {
           address: response.data.address
         });
       } catch (error) {
-        alert("Failed to fetch user. Please try again later.");
+        if (error.response && error.response.status === 401) {
+          navigate('/login');
+        } else {
+          alert("Failed to fetch user. Please try again later.");
+        }
       } finally {
         setLoading(false);
       }
     };
     fetchUser();
-  }, []);
-
+  }, [navigate]);
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -54,24 +61,36 @@ const Profile = () => {
       [name]: value
     });
   };
-
+ 
   const handleEdit = () => {
     setIsEditing(true);
   };
-
+ 
   const handleSave = async (e) => {
     e.preventDefault();
     const userId = localStorage.getItem('userId');
     const token = localStorage.getItem('token');
     try {
-      console.log("Updating user with data:", formData);
-      const response = await axios.put(`${BASE_URL}/${userId}`, formData, {
+      const updateUrl = `${BASE_URL}/${userId}?Name=${formData.name}&Email=${formData.email}&Password=${formData.password}&Phonenumber=${formData.phoneNumber}&Address=${formData.address}`;
+      console.log("Updating user with URL:", updateUrl);
+      await axios.put(updateUrl, null, {
         headers: {
-          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`
         }
       });
+      // Refetch the user data after update
+      const response = await axios.get(`${BASE_URL}/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setUser(response.data);
+      setFormData({
+        userId: response.data.userId,
+        name: response.data.name,
+        email: response.data.email,
+        password: response.data.password,
+        phoneNumber: response.data.phoneNumber,
+        address: response.data.address
+      });
       setIsEditing(false);
     } catch (error) {
       console.error("Error updating user:", error.response || error.message);
@@ -82,11 +101,17 @@ const Profile = () => {
       }
     }
   };
-
+ 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    navigate('/dashboard'); // Redirect to dashboard page
+  };
+ 
   if (loading) {
     return <p>Loading...</p>;
   }
-
+ 
   return (
     <div className="container">
       {user ? (
@@ -144,6 +169,7 @@ const Profile = () => {
               <button className="edit-button" onClick={handleEdit}>Edit</button>
             </div>
           )}
+          <button className="logout-button" onClick={handleLogout}>Logout</button>
         </div>
       ) : (
         <p>No user data available.</p>
@@ -151,5 +177,5 @@ const Profile = () => {
     </div>
   );
 };
-
+ 
 export default Profile;

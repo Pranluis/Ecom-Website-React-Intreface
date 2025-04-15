@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart, FaUser, FaList, FaHome, FaSearch } from "react-icons/fa";
 import Categories from '../Categories/Categories';
-
+import PaymentHistoryPage from '../PaymentHistoryPage/PaymentHistoryPage';
+import PaymentPage from '../PaymentPage/PaymentPage';
 function Dashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   // const navigate = useNavigate();
@@ -229,6 +230,7 @@ function Dashboard() {
               >
                 Payment History
               </Link>
+              
               <Link
                 to="/logout"
                 style={dropdownItemStyle}

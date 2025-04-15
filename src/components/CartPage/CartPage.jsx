@@ -1,7 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import './CartPage.css';
-
+import PaymentPage from '../PaymentPage/PaymentPage';
 const cartItems = [
   {
     id: 1,
@@ -22,6 +23,16 @@ const cartItems = [
 ];
 
 const CartPage = () => {
+  const navigate = useNavigate();
+
+  const calculateCartTotal = () => {
+    return cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
+  };
+
+  const handlePlaceOrderClick = () => {
+    navigate('/payment');
+  };
+
   return (
     <>
       <Navbar />
@@ -48,9 +59,9 @@ const CartPage = () => {
           <p>Price (2 items): ₹4,298</p>
           <p>Platform Fee: ₹0</p>
           <p>Delivery Charges: Free</p>
-          <h3>Total Amount: ₹4,298</h3>
+          <h3>Total Amount: ₹4,298 </h3>
           <p className="save-text">You will save ₹3,500 on this order.</p>
-          <button className="place-order-button">PLACE ORDER</button>
+          <button className="place-order-button" onClick={handlePlaceOrderClick}>PLACE ORDER</button>
         </div>
       </div>
     </>

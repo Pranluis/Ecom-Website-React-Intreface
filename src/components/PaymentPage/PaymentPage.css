@@ -1,0 +1,160 @@
+/* src/components/PaymentPage/PaymentPage.css */
+.payment-page-container {
+    font-family: 'Arial', sans-serif;
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 700px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.payment-page-container h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.address-section, .order-summary-section, .payment-method-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.address-section h3, .order-summary-section h3, .payment-method-section h3 {
+    color: #555;
+    margin-top: 0;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.address-section p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.address-section textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.address-section button {
+    padding: 10px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.address-section button:hover {
+    background-color: #0056b3;
+}
+
+.order-summary-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.order-summary-section li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.order-summary-section ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px; /* Added space below the list */
+}
+
+.order-summary-section li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.order-summary-section p strong {
+    font-size: 18px;
+    color: #333;
+}
+
+.payment-method-section select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.card-details, .upi-details {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+}
+
+.card-details h4, .upi-details h4 {
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.card-details input[type="text"],
+.upi-details input[type="text"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.payment-page-container .pay-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #28a745;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.payment-page-container .pay-button:hover {
+    background-color: #1e7e34;
+}
+
+.payment-page-container .pay-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.payment-page-container p[style*="color: red"] {
+    color: #dc3545 !important;
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.payment-page-container p[style*="color: green"] {
+    color: #28a745 !important;
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
