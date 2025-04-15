@@ -5,8 +5,8 @@ import './Login.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
- 
-const BASE_URL = "https://localhost:7136/api/Users";
+
+const BASE_URL = "http://localhost:5201/api/Users";
  
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -29,7 +29,7 @@ const Login = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post('https://localhost:7136/api/Auth/login', formData);
+            const response = await axios.post('http://localhost:5201/api/Auth/login', formData);
             const { token, userId } = response.data;
             localStorage.setItem('token', token);
             localStorage.setItem('userId', userId);
