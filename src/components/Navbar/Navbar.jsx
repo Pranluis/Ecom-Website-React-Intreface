@@ -20,7 +20,7 @@ function Dashboard() {
 
   const navbarStyle = {
     backgroundColor: backgroundColor,
-    padding: '0.5rem 2rem',
+    padding: '1.5rem 2.5rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -56,8 +56,8 @@ function Dashboard() {
     alignItems: 'center',
     backgroundColor: 'white',
     border: `1px solid ${bright_blue}`,
-    borderRadius: '10px',
-    padding: '0.5rem 0.5rem',
+    borderRadius: '8px',
+    padding: '0.75rem 1rem',
     width: '40%',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
   };
@@ -162,13 +162,14 @@ function Dashboard() {
     <div>
       <nav style={navbarStyle}>
         <div style={logoStyle}>
-          <Link to="/dashboard" style={logoLinkStyle}>
+          <Link to="/" style={logoLinkStyle}>
             <FaHome style={logoIconStyle} size={32} />
             <span>FlexCart</span>
           </Link>
         </div>
 
         <form style={searchBarStyle} onSubmit={handleSearchSubmit}> {/* Wrap input in form */}
+          <FaSearch style={searchIconStyle} size={20} />
           <input
             type="text"
             placeholder="Search..."
@@ -176,7 +177,6 @@ function Dashboard() {
             value={searchTerm}
             onChange={handleSearchInputChange}
           />
-          <FaSearch style={searchIconStyle} size={20} />
         </form>
 
         <ul style={navListStyle}>
@@ -215,7 +215,7 @@ function Dashboard() {
                 My Profile
               </Link>
               <Link
-                to="/orders"
+                to="/order-details"
                 style={dropdownItemStyle}
                 onMouseOver={(e) => Object.assign(e.currentTarget.style, dropdownItemHoverStyle)}
                 onMouseOut={(e) => Object.assign(e.currentTarget.style, dropdownItemStyle)}
@@ -231,14 +231,14 @@ function Dashboard() {
                 Payment History
               </Link>
               
-              {/* <Link
+              <Link
                 to="/logout"
                 style={dropdownItemStyle}
                 onMouseOver={(e) => Object.assign(e.currentTarget.style, dropdownItemHoverStyle)}
                 onMouseOut={(e) => Object.assign(e.currentTarget.style, dropdownItemStyle)}
               >
                 Logout
-              </Link> */}
+              </Link>
             </div>
           </li>
         </ul>

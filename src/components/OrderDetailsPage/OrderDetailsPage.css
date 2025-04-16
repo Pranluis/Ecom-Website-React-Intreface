@@ -1,0 +1,367 @@
+/* src/components/OrderDetailsPage/OrderDetailsPage.css */
+
+/* Page 1: Overall Container and Heading */
+.order-details-container {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 960px;
+    background-color: #f9f9f9;
+}
+
+.order-details-container h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+/* Page 2: Filters Container */
+.filters-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f0f8ff; /* Light background for filters */
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.filter-item {
+    display: flex;
+    align-items: center;
+}
+
+.filter-item label {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+.filter-item select,
+.filter-item input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* Style for the date filter to keep labels and inputs beside each other */
+.filter-item.date-filter {
+    display: flex;
+    align-items: center;
+}
+
+.filter-item.date-filter label {
+    margin-right: 10px;
+}
+
+.filter-item.date-filter input[type="date"] {
+    margin-right: 5px;
+}
+
+.filter-item.date-filter .date-to-label {
+    margin: 0 5px;
+}
+
+.clear-filters-button {
+    padding: 8px 15px;
+    background-color: #d9534f; /* Reddish button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.clear-filters-button:hover {
+    background-color: #c9302c;
+}
+
+/* Page 3: Single Order Item Container */
+.order-item-container {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+/* Page 4: Order Header */
+.order-header {
+    background-color: #f5f5f5;
+    padding: 12px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-header h3 {
+    margin: 0;
+    color: #3498db;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.order-header span {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Page 5: Split Layout and Order Info Section */
+.order-details-split {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+}
+
+.order-info-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.order-info-section h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 1.05em;
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+/* Page 6: Order Detail Items */
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #e8e8e8;
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.5;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-item strong {
+    color: #333;
+    min-width: 130px;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+
+.detail-item span {
+    text-align: right;
+    word-break: break-word;
+}
+
+/* Page 7: Status Badge Styling */
+.detail-item .status {
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.85em;
+    text-transform: capitalize;
+}
+
+.detail-item .status.successfully-placed,
+.detail-item .status.completed {
+    background-color: #28a745; /* Green */
+}
+.detail-item .status.pending,
+.detail-item .status.pending-payment {
+    background-color: #ffc107; /* Yellow */
+    color: #333; /* Dark text for yellow */
+}
+.detail-item .status.failed,
+.detail-item .status.cancelled {
+    background-color: #dc3545; /* Red */
+}
+.detail-item .status.shipped {
+    background-color: #17a2b8; /* Info Blue */
+}
+.detail-item .status.delivered {
+     background-color: #007bff; /* Primary Blue */
+}
+/* Add more statuses as needed */
+
+/* Page 8: Product List Section */
+.order-products-section {
+    flex: 1;
+    min-width: 300px;
+    border-left: 1px solid #eee; /* Separator line (optional) */
+    padding-left: 20px; /* Padding next to separator */
+}
+
+.order-products-section h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 1.05em;
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Page 9: Individual Product Item */
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px; /* Padding within item */
+    border-bottom: 1px solid #f0f0f0; /* Lighter separator */
+    font-size: 0.9em;
+}
+
+.product-item:last-child {
+    border-bottom: none;
+}
+
+.product-name {
+    flex-grow: 1; /* Allow name to take up space */
+    margin-right: 10px;
+    font-weight: 500;
+    color: #444;
+}
+
+.product-quantity {
+    min-width: 60px; /* Fixed width for quantity */
+    text-align: center;
+    color: #777;
+    margin: 0 10px;
+}
+
+.product-price {
+    min-width: 100px; /* Fixed width for price */
+    text-align: right;
+    color: #555;
+    font-weight: 500;
+}
+
+/* Page 10: Error and No Orders Messages */
+.order-details-container .error {
+    color: #c82333;
+    margin: 20px;
+    text-align: center;
+    font-weight: bold;
+    padding: 15px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+}
+
+.order-details-container > p { /* Target the 'no orders' paragraph directly */
+    text-align: center;
+    color: #777;
+    margin-top: 30px;
+    font-size: 1.1em;
+}
+
+/* Page 11: Pagination Controls */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+.pagination-button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.pagination-button:hover:not(:disabled) {
+    background-color: #eee;
+}
+
+.pagination-button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination-button.active {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.pagination-button.prev-next {
+    font-weight: bold;
+}
+
+/* Page 12: Responsive Adjustments */
+@media (max-width: 768px) {
+    .filters-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .filter-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-item label {
+        margin-bottom: 5px;
+    }
+
+    .filter-item.date-filter {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .filter-item.date-filter label {
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+
+    .filter-item.date-filter input[type="date"] {
+        margin-right: 5px;
+    }
+
+    .filter-item.date-filter .date-to-label {
+        margin: 0 5px;
+    }
+
+    .order-details-split {
+        flex-direction: column; /* Stack sections vertically */
+    }
+    .order-products-section {
+        border-left: none; /* Remove vertical separator */
+        padding-left: 0; /* Remove padding */
+        border-top: 1px solid #eee; /* Add top separator */
+        margin-top: 20px; /* Add space above products section */
+        padding-top: 20px; /* Add padding above products list */
+    }
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .order-header span {
+          margin-top: 5px;
+    }
+}
