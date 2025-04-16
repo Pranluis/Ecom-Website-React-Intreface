@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import './Profile.css';
-
+ 
 const BASE_URL = "http://localhost:5201/api/Users";
-
+ 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -17,9 +17,9 @@ const Profile = () => {
     phoneNumber: '',
     address: ''
   });
-
+ 
   const navigate = useNavigate();
-
+ 
   useEffect(() => {
     const fetchUser = async () => {
       const userId = localStorage.getItem('userId');
@@ -53,7 +53,7 @@ const Profile = () => {
     };
     fetchUser();
   }, [navigate]);
-
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -101,13 +101,7 @@ const Profile = () => {
       }
     }
   };
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    navigate('/dashboard'); // Redirect to dashboard page
-  };
-
+ 
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -169,7 +163,6 @@ const Profile = () => {
               <button className="edit-button" onClick={handleEdit}>Edit</button>
             </div>
           )}
-          <button className="logout-button" onClick={handleLogout}>Logout</button>
         </div>
       ) : (
         <p>No user data available.</p>

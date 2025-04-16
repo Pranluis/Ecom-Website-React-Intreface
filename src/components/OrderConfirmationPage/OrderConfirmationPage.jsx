@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import './OrderConfirmationPage.css'; // Ensure this CSS file exists
 import axios from 'axios';
 
-const BASE_URL = 'https://localhost:7136/api'; // Adjust if your API is running elsewhere
+const BASE_URL = 'http://localhost:5201/api'; // Adjust if your API is running elsewhere
 
 const OrderConfirmationPage = () => {
   const navigate = useNavigate();

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './PaymentHistory.css';
 
-const BASE_URL = 'https://localhost:7136/api/Payment'; // Update with your base URL
+const BASE_URL = 'https://localhost:5201/api/Payment'; // Update with your base URL
 
 const PaymentHistoryPage = () => {
     const [paymentHistory, setPaymentHistory] = useState([]);

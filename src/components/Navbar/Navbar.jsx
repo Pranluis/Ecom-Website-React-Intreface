@@ -162,7 +162,7 @@ function Dashboard() {
     <div>
       <nav style={navbarStyle}>
         <div style={logoStyle}>
-          <Link to="/" style={logoLinkStyle}>
+          <Link to="/dashboard" style={logoLinkStyle}>
             <FaHome style={logoIconStyle} size={32} />
             <span>FlexCart</span>
           </Link>
@@ -231,14 +231,14 @@ function Dashboard() {
                 Payment History
               </Link>
               
-              <Link
+              {/* <Link
                 to="/logout"
                 style={dropdownItemStyle}
                 onMouseOver={(e) => Object.assign(e.currentTarget.style, dropdownItemHoverStyle)}
                 onMouseOut={(e) => Object.assign(e.currentTarget.style, dropdownItemStyle)}
               >
                 Logout
-              </Link>
+              </Link> */}
             </div>
           </li>
         </ul>
