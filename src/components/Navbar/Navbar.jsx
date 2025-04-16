@@ -20,7 +20,7 @@ function Dashboard() {
 
   const navbarStyle = {
     backgroundColor: backgroundColor,
-    padding: '1.5rem 2.5rem',
+    padding: '0.5rem 2rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -56,8 +56,8 @@ function Dashboard() {
     alignItems: 'center',
     backgroundColor: 'white',
     border: `1px solid ${bright_blue}`,
-    borderRadius: '8px',
-    padding: '0.75rem 1rem',
+    borderRadius: '10px',
+    padding: '0.5rem 0.5rem',
     width: '40%',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
   };
@@ -169,7 +169,6 @@ function Dashboard() {
         </div>
 
         <form style={searchBarStyle} onSubmit={handleSearchSubmit}> {/* Wrap input in form */}
-          <FaSearch style={searchIconStyle} size={20} />
           <input
             type="text"
             placeholder="Search..."
@@ -177,6 +176,7 @@ function Dashboard() {
             value={searchTerm}
             onChange={handleSearchInputChange}
           />
+          <FaSearch style={searchIconStyle} size={20} />
         </form>
 
         <ul style={navListStyle}>

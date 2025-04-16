@@ -72,6 +72,37 @@ body {
   font-weight: 500;
 }
 
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.quantity-controls button {
+  background-color: var(--bright-blue);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.quantity-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.quantity-controls button:hover:not(:disabled) {
+  background-color: var(--dark-blue-gray);
+}
+
+.quantity-controls span {
+  margin: 0 10px;
+  font-weight: bold;
+  color: var(--dark-blue-gray);
+}
+
 .order-summary {
   flex: 1;
   background: white;
