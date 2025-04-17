@@ -2,6 +2,7 @@
 import Navbar from '../Navbar/Navbar';
 import Categories from '../Categories/Categories';
 import Dummy from '../DummyCard/Dummy'
+import ProductCard from '../ProductCard/productCard';
 
 function Dashboard() {
   return (
@@ -9,6 +10,7 @@ function Dashboard() {
       <Navbar />
       <Categories />
       <Dummy/>
+      <ProductCard/>
     </div>
   );
 }

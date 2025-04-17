@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './OrderDetailsPage.css'; // Import the CSS
-
+import Navbar from '../Navbar/Navbar';
 const BASE_URL = 'http://localhost:5201/api/Order';
 const ORDERS_PER_PAGE = 3; // Number of orders to display per page
 

@@ -21,7 +21,7 @@ const PaymentSuccessfulPage = () => {
 
   return (
     <div className="payment-successful-container">
-      <h2>Order Conformed </h2>
+      <h2>Order Confirmed </h2>
       <p>Thank you for your order.</p>
       
       {[...Array(8)].map((_, i) => <div key={i} className="confetti"></div>)}
