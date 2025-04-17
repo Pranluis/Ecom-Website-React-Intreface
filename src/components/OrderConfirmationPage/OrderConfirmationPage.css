@@ -1,51 +1,74 @@
 /* src/components/OrderConfirmationPage/OrderConfirmationPage.css */
 .order-confirmation-container {
-    font-family: sans-serif;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 600px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    text-align: center;
-  }
-  
-  .order-confirmation-container h2 {
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .shipping-info {
-    background-color: #fff;
-    border: 1px solid #eee;
-    border-radius: 3px;
-    padding: 15px;
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  .shipping-info h3 {
-    color: #555;
-    margin-top: 0;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .shipping-info p {
-    color: #666;
-  }
-  
-  .place-order-button {
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .place-order-button:hover {
-    background-color: #4cae4c;
-  }
+  font-family: sans-serif;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.order-confirmation-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.shipping-info,
+.payment-overview {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.shipping-info h3,
+.payment-overview h3 {
+  color: #555;
+  margin-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.shipping-info p {
+  color: #666;
+}
+
+.payment-overview p {
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.payment-overview strong {
+  font-weight: bold;
+  color: #555;
+}
+
+.loading-payment,
+.error-payment,
+.no-payment {
+  color: #777;
+  font-style: italic;
+}
+
+.error-payment {
+  color: red;
+}
+
+.place-order-button {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.place-order-button:hover {
+  background-color: #4cae4c;
+}

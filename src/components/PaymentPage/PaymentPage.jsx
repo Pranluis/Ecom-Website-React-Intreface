@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './PaymentPage.css';
-import Navbar from '../Navbar/Navbar';
+import './PaymentPage.css'; // Ensure this CSS file exists
 
 const BASE_URL = 'http://localhost:5201/api'; // Adjust if your API is running elsewhere
 
@@ -243,168 +242,165 @@ const PaymentPage = () => {
                 ...(paymentMethod === 'NETBANKING' && { bankName: netBankingBank }),
             };
 
-            const response = await axios.post(
-                `${BASE_URL}/Payment?userid=${localUserId}&paymentmethod=${paymentMethod}`,
-                {}, // Sending an empty body as the parameters are in the URL
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`, // Include your authorization token if required
-                    },
-                }
-            );
+            const response = await axios.post(
+                `${BASE_URL}/Payment?userid=${localUserId}&paymentmethod=${paymentMethod}`,
+                {}, // Sending an empty body as the parameters are in the URL
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`, // Include your authorization token if required
+                    },
+                }
+            );
 
-            if (response.status === 201) {
-                console.log('Payment initiated/recorded successfully:', response.data);
-                setPaymentSuccess(true);
-                // Navigate to the payment successful page
-                navigate('/order-confirmation', { state: { shippingAddress: user?.address } });
-            } else {
-                console.error('Payment request failed:', response);
-                setPaymentError('Failed to process payment. Please try again.');
-            }
+            if (response.status === 201) {
+                console.log('Payment initiated/recorded successfully:', response.data);
+                setPaymentSuccess(true);
+                // Navigate to the payment successful page
+                navigate('/order-confirmation', { state: { shippingAddress: user?.address } });
+            } else {
+                console.error('Payment request failed:', response);
+                setPaymentError('Failed to process payment. Please try again.');
+            }
 
-        } catch (error) {
-            console.error('Error sending payment request:', error);
-            setPaymentError('An unexpected error occurred while processing payment.');
-        }
-    };
+        } catch (error) {
+            console.error('Error sending payment request:', error);
+            setPaymentError('An unexpected error occurred while processing payment.');
+        }
+    };
 
     return (
-        <>
-            <Navbar />
-            <div className="payment-page-container">
-                <h2>Payment Details</h2>
+        <div className="payment-page-container">
+            <h2>Payment Details</h2>
 
-                {loadingUser ? (
-                    <p>Loading user address...</p>
-                ) : errorUser ? (
-                    <p style={{ color: 'red' }}>{errorUser}</p>
+            {loadingUser ? (
+                <p>Loading user address...</p>
+            ) : errorUser ? (
+                <p style={{ color: 'red' }}>{errorUser}</p>
+            ) : (
+                <div className="address-section">
+                    <h3>Shipping Address</h3>
+                    {isEditingAddress ? (
+                        <>
+                            <textarea
+                                value={newAddress}
+                                onChange={(e) => setNewAddress(e.target.value)}
+                                placeholder="Enter your shipping address"
+                                rows="4"
+                                required
+                            />
+                            <button onClick={handleSaveAddress}>Save Address</button>
+                            <button onClick={handleCancelEditAddress}>Cancel</button>
+                        </>
+                    ) : (
+                        <>
+                            <p>{user?.address || 'No address available.'}</p>
+                            <button onClick={handleEditAddress}>Edit Address</button>
+                        </>
+                    )}
+                </div>
+            )}
+
+            <div className="order-summary-section">
+                <h3>Order Summary</h3>
+                {loadingCart ? (
+                    <p>Loading cart details...</p>
+                ) : errorCart ? (
+                    <p style={{ color: 'red' }}>{errorCart}</p>
+                ) : cartItems.length > 0 ? (
+                    <>
+                        <ul>
+                            {cartItems.map(item => (
+                                <li key={item.cartItemId}>
+                                    {item.productName} - ₹{item.productPrice.toFixed(2)} x {item.quantity} = ₹{(item.productPrice * item.quantity).toFixed(2)}
+                                </li>
+                            ))}
+                        </ul>
+                        <p><strong>Total Amount: ₹{totalPrice.toFixed(2)}</strong></p>
+                    </>
                 ) : (
-                    <div className="address-section">
-                        <h3>Shipping Address</h3>
-                        {isEditingAddress ? (
-                            <>
-                                <textarea
-                                    value={newAddress}
-                                    onChange={(e) => setNewAddress(e.target.value)}
-                                    placeholder="Enter your shipping address"
-                                    rows="4"
-                                    required
-                                />
-                                <button onClick={handleSaveAddress}>Save Address</button>
-                                <button onClick={handleCancelEditAddress}>Cancel</button>
-                            </>
-                        ) : (
-                            <>
-                                <p>{user?.address || 'No address available.'}</p>
-                                <button onClick={handleEditAddress}>Edit Address</button>
-                            </>
-                        )}
+                    <p>Your cart is empty.</p>
+                )}
+            </div>
+
+            <div className="payment-method-section">
+                <h3>Payment Method</h3>
+                <select value={paymentMethod} onChange={handlePaymentMethodChange}>
+                    <option value="COD">Cash on Delivery</option>
+                    <option value="CARD">Credit/Debit Card</option>
+                    <option value="UPI">UPI</option>
+                    <option value="NETBANKING">Net Banking</option>
+                </select>
+
+                {isCardVisible && (
+                    <div className="card-details">
+                        <h4>Card Details</h4>
+                        <input
+                            type="text"
+                            placeholder="Card Number (16 digits)"
+                            value={cardNumber}
+                            onChange={(e) => setCardNumber(e.target.value)}
+                            required
+                        />
+                        <input
+                            type="text"
+                            placeholder="Expiry Date (MM/YY)"
+                            value={expiryDate}
+                            onChange={(e) => setExpiryDate(e.target.value)}
+                            required
+                        />
+                        <input
+                            type="text"
+                            placeholder="CVV (3 digits)"
+                            value={cvv}
+                            onChange={(e) => setCvv(e.target.value)}
+                            required
+                        />
                     </div>
                 )}
 
-                <div className="order-summary-section">
-                    <h3>Order Summary</h3>
-                    {loadingCart ? (
-                        <p>Loading cart details...</p>
-                    ) : errorCart ? (
-                        <p style={{ color: 'red' }}>{errorCart}</p>
-                    ) : cartItems.length > 0 ? (
-                        <>
-                            <ul>
-                                {cartItems.map(item => (
-                                    <li key={item.cartItemId}>
-                                        {item.productName} - ₹{item.productPrice.toFixed(2)} x {item.quantity} = ₹{(item.productPrice * item.quantity).toFixed(2)}
-                                    </li>
-                                ))}
-                            </ul>
-                            <p><strong>Total Amount: ₹{totalPrice.toFixed(2)}</strong></p>
-                        </>
-                    ) : (
-                        <p>Your cart is empty.</p>
-                    )}
-                </div>
+                {isUpiVisible && (
+                    <div className="upi-details">
+                        <h4>UPI ID</h4>
+                        <input
+                            type="text"
+                            placeholder="Enter UPI ID"
+                            value={upiId}
+                            onChange={(e) => setUpiId(e.target.value)}
+                            required
+                        />
+                    </div>
+                )}
 
-                <div className="payment-method-section">
-                    <h3>Payment Method</h3>
-                    <select value={paymentMethod} onChange={handlePaymentMethodChange}>
-                        <option value="COD">Cash on Delivery</option>
-                        <option value="CARD">Credit/Debit Card</option>
-                        <option value="UPI">UPI</option>
-                        <option value="NETBANKING">Net Banking</option>
-                    </select>
+                {isNetBankingVisible && (
+                    <div className="netbanking-details">
+                        <h4>Net Banking</h4>
+                        <select value={netBankingBank} onChange={(e) => setNetBankingBank(e.target.value)} required>
+                            <option value="">Select Bank</option>
+                            <option value="SBI">State Bank of India</option>
+                            <option value="ICICI">ICICI Bank</option>
+                            <option value="HDFC">HDFC Bank</option>
+                            <option value="IDBI">IDBI Bank</option>
+                            <option value="AXIS">Axis Bank</option>
+                            <option value="PNB">Punjab National Bank</option>
+                            <option value="BOB">Bank of Baroda</option>
+                            {/* Add more banks as needed */}
+                        </select>
+                    </div>
+                )}
 
-                    {isCardVisible && (
-                        <div className="card-details">
-                            <h4>Card Details</h4>
-                            <input
-                                type="text"
-                                placeholder="Card Number (16 digits)"
-                                value={cardNumber}
-                                onChange={(e) => setCardNumber(e.target.value)}
-                                required
-                            />
-                            <input
-                                type="text"
-                                placeholder="Expiry Date (MM/YY)"
-                                value={expiryDate}
-                                onChange={(e) => setExpiryDate(e.target.value)}
-                                required
-                            />
-                            <input
-                                type="text"
-                                placeholder="CVV (3 digits)"
-                                value={cvv}
-                                onChange={(e) => setCvv(e.target.value)}
-                                required
-                            />
-                        </div>
-                    )}
-
-                    {isUpiVisible && (
-                        <div className="upi-details">
-                            <h4>UPI ID</h4>
-                            <input
-                                type="text"
-                                placeholder="Enter UPI ID"
-                                value={upiId}
-                                onChange={(e) => setUpiId(e.target.value)}
-                                required
-                            />
-                        </div>
-                    )}
-
-                    {isNetBankingVisible && (
-                        <div className="netbanking-details">
-                            <h4>Net Banking</h4>
-                            <select value={netBankingBank} onChange={(e) => setNetBankingBank(e.target.value)} required>
-                                <option value="">Select Bank</option>
-                                <option value="SBI">State Bank of India</option>
-                                <option value="ICICI">ICICI Bank</option>
-                                <option value="HDFC">HDFC Bank</option>
-                                <option value="IDBI">IDBI Bank</option>
-                                <option value="AXIS">Axis Bank</option>
-                                <option value="PNB">Punjab National Bank</option>
-                                <option value="BOB">Bank of Baroda</option>
-                                {/* Add more banks as needed */}
-                            </select>
-                        </div>
-                    )}
-
-                    {paymentError && <p style={{ color: 'red' }}>{paymentError}</p>}
-                    {paymentSuccess && <p style={{ color: 'green' }}>Payment successful!</p>}
-                </div>
-
-                <button
-                    className="pay-button"
-                    onClick={handlePlaceOrder}
-                    disabled={loadingUser || loadingCart || cartItems.length === 0 || !localUserId}
-                >
-                    Pay Now
-                </button>
+                {paymentError && <p style={{ color: 'red' }}>{paymentError}</p>}
+                {paymentSuccess && <p style={{ color: 'green' }}>Payment successful!</p>}
             </div>
-        </>
+
+            <button
+                className="pay-button"
+                onClick={handlePlaceOrder}
+                disabled={loadingUser || loadingCart || cartItems.length === 0 || !localUserId}
+            >
+                Pay Now
+            </button>
+        </div>
     );
 };
 

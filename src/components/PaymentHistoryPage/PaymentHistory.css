@@ -1,120 +1,191 @@
 /* src/components/PaymentHistoryPage/PaymentHistory.css */
 .payment-history-container {
-    font-family: 'Arial', sans-serif;
+    font-family: sans-serif;
     padding: 20px;
     margin: 20px auto;
-    max-width: 960px;
+    max-width: 900px;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .payment-history-container h2 {
     color: #333;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .filter-section {
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    gap: 15px 20px; /* Row gap and column gap */
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
     background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.filter-section > div {
+    display: flex;
+    align-items: center;
 }
 
 .filter-section label {
     font-weight: bold;
     color: #555;
+    margin-right: 8px;
 }
 
 .filter-section input[type="date"],
 .filter-section select {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 16px;
+    flex-grow: 1;
+    max-width: 200px;
+    font-size: 1rem;
+    color: #666;
+    appearance: none; /* Remove default arrow for better styling */
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%23666" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 1.5em;
+}
+
+.filter-section input[type="date"] {
+    /* Style the date picker icon if needed */
+}
+
+.clear-filters-button {
+    background-color: #f44336; /* Red color */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.clear-filters-button:hover {
+    background-color: #d32f2f;
 }
 
 .payment-history-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-bottom: 25px;
     background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     border-radius: 6px;
     overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
 }
 
-.payment-history-table th, .payment-history-table td {
+.payment-history-table th,
+.payment-history-table td {
     padding: 12px 15px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #eee;
 }
 
 .payment-history-table th {
-    background-color: #007bff;
-    color: white;
+    background-color: #f5f5f5;
     font-weight: bold;
+    color: #333;
+}
+
+.payment-history-table tbody tr:last-child td {
+    border-bottom: none;
 }
 
 .payment-history-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f9f9f9;
 }
 
-.payment-history-table tbody tr:hover {
-    background-color: #e0f7fa;
+.payment-history-table td:nth-child(2), /* Amount */
+.payment-history-table td:nth-child(4) /* Date & Time */ {
+    white-space: nowrap;
 }
 
-.payment-history-container .error {
-    color: red;
-    margin-top: 10px;
-    text-align: center;
-}
-
-.payment-history-container p {
-    text-align: center;
-    color: #777;
-    margin-top: 20px;
-}
-
-/* Pagination Controls */
 .pagination-controls {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    padding: 10px;
-    border-top: 1px solid #eee;
+    gap: 10px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid #ddd;
 }
 
 .pagination-button {
-    padding: 8px 12px;
-    margin: 0 5px;
-    border: 1px solid #ccc;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    background-color: #f9f9f9;
+    background-color: #fff;
+    color: #555;
     cursor: pointer;
-    font-size: 0.9em;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    font-size: 0.9rem;
 }
 
-.pagination-button:hover:not(:disabled) {
-    background-color: #eee;
-}
-
-.pagination-button:disabled {
-    color: #ccc;
-    cursor: not-allowed;
-}
-
+.pagination-button:hover:not(:disabled),
 .pagination-button.active {
     background-color: #007bff;
     color: white;
     border-color: #007bff;
 }
 
-.pagination-button.prev-next {
-    font-weight: bold;
+.pagination-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    margin-top: 25px;
+}
+
+/* Specific alignment for the Payment Method filter */
+.filter-section > div:nth-child(4) { /* Adjust based on the order of your elements */
+    margin-left: auto; /* Push it to the right */
+}
+
+/* Clear Filters Button Styling */
+.filter-section > button.clear-filters-button {
+    margin-left: auto; /* Push to the right */
+}
+
+@media (max-width: 768px) {
+    .filter-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-section > div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-section label {
+        margin-bottom: 5px;
+    }
+
+    .filter-section input[type="date"],
+    .filter-section select {
+        max-width: 100%;
+    }
+
+    .filter-section > div:nth-child(4) {
+        margin-left: 0; /* Reset for smaller screens */
+    }
+
+    .filter-section > button.clear-filters-button {
+        margin-left: 0; /* Reset for smaller screens */
+        margin-top: 15px;
+    }
 }
