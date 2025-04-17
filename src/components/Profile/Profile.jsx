@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import './Profile.css';
+import Navbar from '../Navbar/Navbar';
  
 const BASE_URL = "http://localhost:5201/api/Users";
  
@@ -107,6 +108,8 @@ const Profile = () => {
   }
  
   return (
+    <>
+      <Navbar />
     <div className="container">
       {user ? (
         <div className="profile">
@@ -168,6 +171,7 @@ const Profile = () => {
         <p>No user data available.</p>
       )}
     </div>
+    </>
   );
 };
  

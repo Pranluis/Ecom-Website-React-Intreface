@@ -20,7 +20,7 @@ function Dashboard() {
 
   const navbarStyle = {
     backgroundColor: backgroundColor,
-    padding: '1.5rem 2.5rem',
+    padding: '0.5rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -57,7 +57,7 @@ function Dashboard() {
     backgroundColor: 'white',
     border: `1px solid ${bright_blue}`,
     borderRadius: '8px',
-    padding: '0.75rem 1rem',
+    padding: '0.5rem',
     width: '40%',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
   };

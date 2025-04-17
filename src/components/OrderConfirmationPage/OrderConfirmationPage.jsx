@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './OrderConfirmationPage.css'; // Ensure this CSS file exists
 import axios from 'axios';
+import Navbar from '../Navbar/Navbar';
 
 const BASE_URL = 'http://localhost:5201/api'; // Adjust if your API is running elsewhere
 
@@ -53,6 +54,8 @@ const OrderConfirmationPage = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="order-confirmation-container">
       <h2>Confirm Your Order</h2>
       <div className="shipping-info">
@@ -63,6 +66,7 @@ const OrderConfirmationPage = () => {
         Place Order
       </button>
     </div>
+</>
   );
 };
 

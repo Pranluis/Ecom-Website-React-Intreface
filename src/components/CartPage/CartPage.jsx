@@ -1,49 +1,72 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import './CartPage.css';
-import PaymentPage from '../PaymentPage/PaymentPage';
-
-const initialCartItems = [
-  {
-    id: 1,
-    name: 'R&S Soft Toys Zip Bunny - 30 cm (Pink)',
-    price: 219,
-    oldPrice: 499,
-    discount: '56% off',
-    img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/stuffed-toy/k/0/2/strawberry-bunny-plush-toy-adorable-strawberry-rabbit-plushie-35-original-imagusvqsukxfdyf.jpeg?q=70',
-    quantity: 1,
-  },
-  {
-    id: 2,
-    name: 'Ethnic 4 You Kurti Pant Dupatta Set',
-    price: 499,
-    oldPrice: 799,
-    discount: '44% off',
-    img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/ethnic-set/z/w/r/s-skd4008-mustrad-j-new-ethnic-4-you-original-imah8ugjny9dhstf.jpeg?q=70',
-    quantity: 1,
-  },
-];
+import axios from 'axios';
 
 const CartPage = () => {
-  const [cartItems, setCartItems] = useState(initialCartItems);
+  const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const calculateCartTotal = () => {
-    return cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
-  };
+  useEffect(() => {
+    const token = localStorage.getItem('token'); // Retrieve token from local storage
+    const userId = localStorage.getItem('userId'); // Retrieve user ID from local storage
+
+    if (token && userId) {
+      fetch(`http://localhost:5201/api/CartItems/user-cart/${userId}`, {
+        headers: {
+          'accept': '*/*',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Network response was not ok: ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          setCartItems(data);
+        })
+        .catch(error => console.error('Error fetching cart items:', error))
+        .finally(() => setLoading(false));
+    } else {
+      console.error('Token or user ID not found in local storage');
+      setLoading(false);
+    }
+  }, []);
 
   const handlePlaceOrderClick = () => {
     navigate('/payment');
   };
 
-  const handleQuantityChange = (id, delta) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + delta } : item
-      )
+  const handleQuantityChange = async (id, delta) => {
+    const updatedItems = cartItems.map((item) =>
+      item.cartItemId === id ? { ...item, quantity: item.quantity + delta } : item
     );
+    setCartItems(updatedItems);
+
+    const updatedItem = updatedItems.find(item => item.cartItemId === id);
+    try {
+      await axios.put(`http://localhost:5201/api/CartItems/${updatedItem.cartItemId}`, {
+        cartItemId: updatedItem.cartItemId,
+        productId: updatedItem.productId,
+        userId: updatedItem.userId,
+        quantity: updatedItem.quantity
+      }, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+    } catch (error) {
+      console.error("Error updating quantity:", error);
+    }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -51,33 +74,36 @@ const CartPage = () => {
       <div className="main-container">
         <div className="cart-items">
           <h2>Shopping Cart</h2>
-          {cartItems.map((item) => (
-            <div key={item.id} className="cart-card">
-              <img src={item.img} alt={item.name} />
-              <div className="item-details">
-                <h3>{item.name}</h3>
-                <div className="product-price">
-                  <span className="new-price">₹{item.price * item.quantity}</span>
-                  <span className="old-price">₹{item.oldPrice * item.quantity}</span>
-                  <span className="discount">{item.discount}</span>
-                </div>
-                <div className="quantity-controls">
-                  <button onClick={() => handleQuantityChange(item.id, -1)} disabled={item.quantity <= 1}>-</button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => handleQuantityChange(item.id, 1)}>+</button>
+          {cartItems.length > 0 ? (
+            cartItems.map((item) => (
+              <div key={item.cartItemId} className="cart-card">
+                <img src={item.productImg} alt={item.productName} />
+                <div className="item-details">
+                  <h3>{item.productName}</h3>
+                  <p>{item.productDes}</p>
+                  <div className="product-price">
+                    <span className="new-price">₹{item.productPrice * item.quantity}</span>
+                    <span className="quantity">Quantity: {item.quantity}</span>
+                  </div>
+                  <div className="quantity-controls">
+                    <button onClick={() => handleQuantityChange(item.cartItemId, -1)} disabled={item.quantity <= 1}>-</button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => handleQuantityChange(item.cartItemId, 1)}>+</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p>No items in the cart.</p>
+          )}
         </div>
 
         <div className="order-summary">
           <h2>Price Details</h2>
-          <p>Price ({cartItems.reduce((total, item) => total + item.quantity, 0)} items): ₹{calculateCartTotal()}</p>
+          <p>Price ({cartItems.length} items): ₹{cartItems.reduce((total, item) => total + item.productPrice * item.quantity, 0)}</p>
           <p>Platform Fee: ₹0</p>
           <p>Delivery Charges: Free</p>
-          <h3>Total Amount: ₹{calculateCartTotal()} </h3>
-          <p className="save-text">You will save ₹{initialCartItems.reduce((total, item) => total + (item.oldPrice - item.price) * item.quantity, 0)} on this order.</p>
+          <h3>Total Amount: ₹{cartItems.reduce((total, item) => total + item.productPrice * item.quantity, 0)}</h3>
           <button className="place-order-button" onClick={handlePlaceOrderClick}>PLACE ORDER</button>
         </div>
       </div>

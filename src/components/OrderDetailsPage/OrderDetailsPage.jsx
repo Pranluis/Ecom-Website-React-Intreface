@@ -154,6 +154,8 @@ const OrderDetailsPage = () => {
 
     // Page 9: Render Logic - Display Orders and Pagination
     return (
+        <>
+    <Navbar />
         <div className="order-details-container">
             <h2>Your Orders</h2>
 
@@ -287,6 +289,7 @@ const OrderDetailsPage = () => {
                 </div>
             )}
         </div>
+        </>
     );
 };
 
