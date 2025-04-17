@@ -37,6 +37,8 @@ function App() {
                     <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
                     <Route path="/card" element={<Card />} />
                     <Route path="/order-details" element={<OrderDetailsPage />} />
+
+
                     
                 </Routes>
             </Router>

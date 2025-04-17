@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart, FaUser, FaHome, FaSearch } from "react-icons/fa";
 import axios from 'axios';
+import Logout from '../Logout/Logout';
 
 const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -254,14 +255,7 @@ const Dashboard = () => {
                 Payment History
               </Link>
               
-              <Link
-                to="/logout"
-                style={dropdownItemStyle}
-                onMouseOver={(e) => Object.assign(e.currentTarget.style, dropdownItemHoverStyle)}
-                onMouseOut={(e) => Object.assign(e.currentTarget.style, dropdownItemStyle)}
-              >
-                Logout
-              </Link>
+              <Logout />
             </div>
           </li>
         </ul>
@@ -270,4 +264,4 @@ const Dashboard = () => {
   );
 }
 
-export default Dashboard;
+export default Dashboard; 
