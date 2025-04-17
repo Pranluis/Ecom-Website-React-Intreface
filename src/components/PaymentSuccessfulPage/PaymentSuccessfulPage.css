@@ -1,83 +1,112 @@
 /* src/components/PaymentSuccessfulPage/PaymentSuccessfulPage.css */
 .payment-successful-container {
-    font-family: 'Arial', sans-serif;
-    padding: 40px;
-    margin: 40px auto;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    margin: 30px auto;
     max-width: 600px;
-    background-color: #e6ffe6; /* Light green background */
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     text-align: center;
-    position: relative; /* For positioning the animation elements */
-    overflow: hidden; /* Clip the animation within the container */
-}
-
-.payment-successful-container h2 {
-    color: #28a745; /* Green color for success */
+    position: relative; /* For confetti animation positioning */
+    overflow: hidden; /* Hide confetti overflow */
+  }
+  
+  .payment-successful-container h2 {
+    color: #28a745; /* Green for success */
     margin-bottom: 20px;
-    font-size: 2.5em;
-    z-index: 10; /* Ensure text is above animation */
-    position: relative;
-}
-
-.payment-successful-container p {
+  }
+  
+  .payment-successful-container p {
     color: #555;
-    font-size: 1.2em;
     line-height: 1.6;
-    margin-bottom: 20px;
-    z-index: 10; /* Ensure text is above animation */
-    position: relative;
-}
-
-/* Basic celebratory animation (can be expanded) */
-.confetti {
-    position: absolute;
-    top: -10%;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-bottom: 15px;
+  }
+  
+  .payment-successful-container strong {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .order-id {
+    color: #777;
+    font-size: 0.9em;
+    margin-top: 10px;
+  }
+  
+  .continue-shopping-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .continue-shopping-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .confetti {
     width: 10px;
     height: 10px;
-    background-color: #f06;
+    background-color: #f1c40f; /* Yellow */
+    position: absolute;
+    top: -10px;
     border-radius: 50%;
     opacity: 0;
-    animation: fall 1.5s linear forwards infinite;
-    z-index: 5;
-}
-
-.confetti:nth-child(1) { background-color: #f06; left: 10%; animation-delay: 0s; }
-.confetti:nth-child(2) { background-color: #0cf; left: 20%; animation-delay: 0.2s; }
-.confetti:nth-child(3) { background-color: #ff0; left: 30%; animation-delay: 0.4s; }
-.confetti:nth-child(4) { background-color: #0f6; left: 40%; animation-delay: 0.6s; }
-.confetti:nth-child(5) { background-color: #60f; left: 60%; animation-delay: 0.8s; }
-.confetti:nth-child(6) { background-color: #f90; left: 70%; animation-delay: 1s; }
-.confetti:nth-child(7) { background-color: #0ff; left: 80%; animation-delay: 1.2s; }
-.confetti:nth-child(8) { background-color: #f60; left: 90%; animation-delay: 1.4s; }
-
-@keyframes fall {
-    0% { top: -10%; opacity: 1; transform: translateX(-50%) rotate(0deg); }
-    100% { top: 110%; opacity: 0.7; transform: translateX(calc(-50% + 20px)) rotate(720deg); }
-}
-
-.payment-successful-container .order-id {
-    background-color: #d1fae5; /* Lighter green background for order ID */
-    padding: 10px 15px;
-    border-radius: 6px;
+    animation: fall 2s linear forwards;
+  }
+  
+  .confetti:nth-child(even) {
+    background-color: #e74c3c; /* Red */
+    left: 10%;
+  }
+  
+  .confetti:nth-child(3n) {
+    background-color: #3498db; /* Blue */
+    left: 30%;
+    animation-delay: 0.5s;
+  }
+  
+  .confetti:nth-child(5n) {
+    background-color: #2ecc71; /* Green */
+    left: 50%;
+    animation-delay: 1s;
+  }
+  
+  .confetti:nth-child(7n) {
+    background-color: #9b59b6; /* Purple */
+    left: 70%;
+    animation-delay: 1.5s;
+  }
+  
+  .confetti:nth-child(9n) {
+    background-color: #1abc9c; /* Teal */
+    left: 90%;
+  }
+  
+  @keyframes fall {
+    to {
+      top: 110%;
+      opacity: 1;
+    }
+  }
+  
+  .loading-user,
+  .error {
+    color: #777;
+    font-style: italic;
     margin-top: 10px;
-    color: #388e3c; /* Darker green for text */
-    font-weight: bold;
-    z-index: 10; /* Ensure text is above animation */
-    position: relative;
-}
-
-.payment-successful-container a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    z-index: 10; /* Ensure text is above animation */
-    position: relative;
-}
-
-.payment-successful-container a:hover {
-    color: #0056b3;
-    text-decoration: underline;
-}
+  }
+  
+  .error {
+    color: red;
+  }

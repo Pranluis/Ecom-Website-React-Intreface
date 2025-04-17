@@ -15,6 +15,7 @@ const PaymentHistoryPage = () => {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [statusFilter, setStatusFilter] = useState('All'); // Added status filter state
+    const [paymentMethodFilter, setPaymentMethodFilter] = useState('All'); // Added payment method filter
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [currentPayments, setCurrentPayments] = useState([]);
@@ -53,7 +54,7 @@ const PaymentHistoryPage = () => {
         };
 
         fetchPaymentHistory();
-    }, [userId, token, startDate, endDate, statusFilter]);
+    }, [userId, token, startDate, endDate, statusFilter, paymentMethodFilter]);
 
     useEffect(() => {
         const filteredPayments = allPayments.filter(payment => {
@@ -61,10 +62,10 @@ const PaymentHistoryPage = () => {
             const start = startDate ? new Date(startDate) : null;
             const end = endDate ? new Date(endDate) : null;
             const statusMatch = statusFilter === 'All' || payment.status === statusFilter;
-
+            const methodMatch = paymentMethodFilter === 'All' || payment.paymentMethod === paymentMethodFilter;
             const dateMatch = (!start || paymentDate >= start) && (!end || paymentDate <= end);
 
-            return dateMatch && statusMatch;
+            return dateMatch && statusMatch && methodMatch;
         });
 
         const indexOfLastPayment = currentPage * PAYMENTS_PER_PAGE;
@@ -85,6 +86,12 @@ const PaymentHistoryPage = () => {
 
     const handleNextPage = () => {
         setCurrentPage(prev => Math.min(prev + 1, totalPages));
+    };
+    const handleClearFilters = () => {
+        setStartDate('');
+        setEndDate('');
+        setStatusFilter('All');
+        setPaymentMethodFilter('All');
     };
 
     const formatDate = (dateTimeString) => {
@@ -138,7 +145,21 @@ const PaymentHistoryPage = () => {
                     <option value="Pending payment - For Order Comfirmation">Pending payment</option>
                     {/* Add other status options as needed */}
                 </select>
+                <div>
+                    <label htmlFor="paymentMethodFilter">Payment Method:</label>
+                    <select id="paymentMethodFilter" value={paymentMethodFilter} onChange={(e) => setPaymentMethodFilter(e.target.value)}>
+                        <option value="All">All</option>
+                        {[...new Set(allPayments.map(payment => payment.paymentMethod))].sort().map(method => (
+                            <option key={method} value={method}>{method}</option>
+                        ))}
+                        {/* Add other payment method options as needed */}
+                    </select>
+                </div>
+                <button onClick={handleClearFilters} className="clear-filters-button">
+                    Clear Filters
+                </button>
             </div>
+            
             {currentPayments.length > 0 ? (
                 <>
                     <table className="payment-history-table">
