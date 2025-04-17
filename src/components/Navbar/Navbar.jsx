@@ -1,23 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaShoppingCart, FaUser, FaList, FaHome, FaSearch } from "react-icons/fa";
-import Categories from '../Categories/Categories';
-import PaymentHistoryPage from '../PaymentHistoryPage/PaymentHistoryPage';
-import PaymentPage from '../PaymentPage/PaymentPage';
-function Dashboard() {
+import { FaShoppingCart, FaUser, FaHome, FaSearch } from "react-icons/fa";
+import axios from 'axios';
+
+const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  // const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    const fetchCartCount = async () => {
+      const userId = localStorage.getItem('userId');
+      const token = localStorage.getItem('token');
+
+      if (!userId || !token) {
+        console.error('User ID or token not found in storage.');
+        return;
+      }
+
+      try {
+        const response = await axios.get(`http://localhost:5201/api/CartItems/user-cart/${userId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setCartCount(response.data.length);
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
+      }
+    };
+
+    fetchCartCount();
+  }, []);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-const Dark_blue_gray = '#2c3e50';
+  const Dark_blue_gray = '#2c3e50';
   const bright_blue = '#3498db';
   const orange_red = '#e67e22';
   const backgroundColor = '#f0f8ff'; // Light blue
- 
+
   const navbarStyle = {
     backgroundColor: backgroundColor,
     padding: '1.5rem 1rem',
@@ -29,7 +51,7 @@ const Dark_blue_gray = '#2c3e50';
     borderRadius: '8px',
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
   };
- 
+
   const logoStyle = {
     fontSize: '2rem',
     fontWeight: 'bold',
@@ -38,19 +60,19 @@ const Dark_blue_gray = '#2c3e50';
     alignItems: 'center',
     textDecoration: 'none',
   };
- 
+
   const logoLinkStyle = {
     textDecoration: 'none',
     color: 'inherit',
     display: 'flex',
     alignItems: 'center',
   };
- 
+
   const logoIconStyle = {
     marginRight: '0.75rem',
     fill: bright_blue,
   };
- 
+
   const searchBarStyle = {
     display: 'flex',
     alignItems: 'center',
@@ -61,7 +83,7 @@ const Dark_blue_gray = '#2c3e50';
     width: '40%',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
   };
- 
+
   const searchInputStyle = {
     border: 'none',
     outline: 'none',
@@ -70,12 +92,12 @@ const Dark_blue_gray = '#2c3e50';
     fontSize: '1rem',
     color: Dark_blue_gray,
   };
- 
+
   const searchIconStyle = {
     marginRight: '0.75rem',
     color: bright_blue,
   };
- 
+
   const navListStyle = {
     listStyle: 'none',
     padding: 0,
@@ -83,12 +105,12 @@ const Dark_blue_gray = '#2c3e50';
     display: 'flex',
     alignItems: 'center',
   };
- 
+
   const navItemStyle = {
     marginLeft: '2rem',
     position: 'relative',
   };
- 
+
   const navLinkStyle = {
     textDecoration: 'none',
     color: Dark_blue_gray,
@@ -98,17 +120,17 @@ const Dark_blue_gray = '#2c3e50';
     transition: 'color 0.2s ease-in-out, transform 0.2s ease-in-out',
     cursor: 'pointer',
   };
- 
+
   const navLinkHoverStyle = {
     color: orange_red,
     transform: 'scale(1.05)',
   };
- 
+
   const navIconStyle = {
     marginRight: '0.5rem',
     fill: bright_blue,
   };
- 
+
   const cartCountStyle = {
     backgroundColor: orange_red,
     color: 'white',
@@ -117,7 +139,7 @@ const Dark_blue_gray = '#2c3e50';
     fontSize: '0.9rem',
     marginLeft: '0.5rem',
   };
- 
+
   const dropdownMenuStyle = {
     display: dropdownOpen ? 'block' : 'none',
     position: 'absolute',
@@ -133,7 +155,7 @@ const Dark_blue_gray = '#2c3e50';
     opacity: dropdownOpen ? 1 : 0,
     transform: dropdownOpen ? 'translateY(0)' : 'translateY(-10px)',
   };
- 
+
   const dropdownItemStyle = {
     padding: '0.75rem 1.25rem',
     textDecoration: 'none',
@@ -142,12 +164,12 @@ const Dark_blue_gray = '#2c3e50';
     transition: 'background-color 0.2s ease-in-out',
     fontWeight: 500,
   };
- 
+
   const dropdownItemHoverStyle = {
     backgroundColor: '#f8f9fa',
     color: orange_red,
   };
- 
+
   const handleSearchInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -159,11 +181,12 @@ const Dark_blue_gray = '#2c3e50';
       setSearchTerm(''); // Clear the input after submission
     }
   };
+
   return (
     <div>
       <nav style={navbarStyle}>
         <div style={logoStyle}>
-          <Link to="/" style={logoLinkStyle}>
+          <Link to="/dashboard" style={logoLinkStyle}>
             <FaHome style={logoIconStyle} size={32} />
             <span>FlexCart</span>
           </Link>
@@ -191,8 +214,7 @@ const Dark_blue_gray = '#2c3e50';
               <FaShoppingCart style={navIconStyle} size={24} />
               Cart
               <span style={cartCountStyle}>
-                {/* Replace with your actual cart item count */}
-                3
+                {cartCount}
               </span>
             </Link>
           </li>

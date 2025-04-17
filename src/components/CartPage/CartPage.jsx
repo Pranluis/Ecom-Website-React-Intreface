@@ -3,10 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import './CartPage.css';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+import { FaTimes } from 'react-icons/fa';
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -64,12 +68,37 @@ const CartPage = () => {
     }
   };
 
+  const handleDeleteItem = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5201/api/CartItems/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      setCartItems(cartItems.filter(item => item.cartItemId !== id));
+      toast.info('Product removed from the cart successfully!');
+      
+
+      setTimeout(() => {
+          window.location.reload();
+       }, 2000); 
+        
+    } catch (error) {
+      console.error("Error deleting item:", error);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <>
+     <ToastContainer />
       <Navbar />
       <div className="main-container">
         <div className="cart-items">
@@ -77,6 +106,9 @@ const CartPage = () => {
           {cartItems.length > 0 ? (
             cartItems.map((item) => (
               <div key={item.cartItemId} className="cart-card">
+                <button onClick={() => handleDeleteItem(item.cartItemId)} className="delete-button">
+                  <FaTimes />
+                </button>
                 <img src={item.productImg} alt={item.productName} />
                 <div className="item-details">
                   <h3>{item.productName}</h3>

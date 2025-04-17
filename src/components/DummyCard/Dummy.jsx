@@ -1,5 +1,6 @@
 import React from 'react';
-import './Dummy.css';
+import './Dummy.css'
+
 
 const products = [
   {
@@ -52,35 +53,25 @@ const products = [
     reviews: '34,567',
     img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/headphone/z/v/y/-original-imagmuggusa94g3u.jpeg?q=70',
   },
-  // {
-  //   id: 6,
-  //   name: 'Kids School Bag - Unicorn Print',
-  //   price: '₹649',
-  //   oldPrice: '₹1,099',
-  //   discount: '41% off',
-  //   rating: '4.2',
-  //   reviews: '876',
-  //   img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/bag/t/u/t/29-cute-unicorn-soft-plush-backpack-bag-for-girls-kids-for-original-imah36f69g6jxusu.jpeg?q=70',
-  // },
 ];
 
 const ProductList = () => {
   return (
-    <div className="product-section">
-      <h2 className="section-heading">Products Available on Our Platform</h2>
-      <div className="product-list">
+    <div className="product-section-new">
+      <h2 className="section-heading-new">Products Available on Our Platform</h2>
+      <div className="product-list-new">
         {products.map((product) => (
-          <div key={product.id} className="product-card">
-            <img src={product.img} alt={product.name} />
-            <div className="product-name">{product.name}</div>
-            <div className="product-rating">
-              <span className="star">{product.rating}★</span>
-              <span className="reviews">({product.reviews})</span>
+          <div key={product.id} className="product-card-new">
+            <img src={product.img} alt={product.name} className="product-image-new" />
+            <div className="product-name-new">{product.name}</div>
+            <div className="product-rating-new">
+              <span className="star-new">{product.rating}★</span>
+              <span className="reviews-new">({product.reviews})</span>
             </div>
-            <div className="product-price">
-              <span className="new-price">{product.price}</span>
-              <span className="old-price">{product.oldPrice}</span>
-              <span className="discount">{product.discount}</span>
+            <div className="product-price-new">
+              <span className="new-price-new">{product.price}</span>
+              <span className="old-price-new">{product.oldPrice}</span>
+              <span className="discount-new">{product.discount}</span>
             </div>
           </div>
         ))}

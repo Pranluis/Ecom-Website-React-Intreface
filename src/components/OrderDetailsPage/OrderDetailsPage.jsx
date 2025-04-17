@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './OrderDetailsPage.css'; // Import the CSS
+import Navbar from '../HomePage/Navbar/Navbar';
 
 const BASE_URL = 'http://localhost:5201/api/Order';
 const ORDERS_PER_PAGE = 3; // Number of orders to display per page
@@ -154,6 +155,8 @@ const OrderDetailsPage = () => {
 
     // Page 9: Render Logic - Display Orders and Pagination
     return (
+        <>
+        
         <div className="order-details-container">
             <h2>Your Orders</h2>
 
@@ -287,6 +290,7 @@ const OrderDetailsPage = () => {
                 </div>
             )}
         </div>
+        </>
     );
 };
 
