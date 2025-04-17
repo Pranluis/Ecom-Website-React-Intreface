@@ -13,14 +13,14 @@ function Dashboard() {
     setDropdownOpen(!dropdownOpen);
   };
 
-  const Dark_blue_gray = '#2c3e50'; 
-  const bright_blue = '#3498db'; 
-  const orange_red = '#e67e22'; 
+const Dark_blue_gray = '#2c3e50';
+  const bright_blue = '#3498db';
+  const orange_red = '#e67e22';
   const backgroundColor = '#f0f8ff'; // Light blue
-
+ 
   const navbarStyle = {
     backgroundColor: backgroundColor,
-    padding: '0.5rem',
+    padding: '1.5rem 1rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -29,7 +29,7 @@ function Dashboard() {
     borderRadius: '8px',
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
   };
-
+ 
   const logoStyle = {
     fontSize: '2rem',
     fontWeight: 'bold',
@@ -38,30 +38,30 @@ function Dashboard() {
     alignItems: 'center',
     textDecoration: 'none',
   };
-
+ 
   const logoLinkStyle = {
     textDecoration: 'none',
     color: 'inherit',
     display: 'flex',
     alignItems: 'center',
   };
-
+ 
   const logoIconStyle = {
     marginRight: '0.75rem',
     fill: bright_blue,
   };
-
+ 
   const searchBarStyle = {
     display: 'flex',
     alignItems: 'center',
     backgroundColor: 'white',
     border: `1px solid ${bright_blue}`,
     borderRadius: '8px',
-    padding: '0.5rem',
+    padding: '0.75rem 1rem',
     width: '40%',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
   };
-
+ 
   const searchInputStyle = {
     border: 'none',
     outline: 'none',
@@ -70,12 +70,12 @@ function Dashboard() {
     fontSize: '1rem',
     color: Dark_blue_gray,
   };
-
+ 
   const searchIconStyle = {
     marginRight: '0.75rem',
     color: bright_blue,
   };
-
+ 
   const navListStyle = {
     listStyle: 'none',
     padding: 0,
@@ -83,12 +83,12 @@ function Dashboard() {
     display: 'flex',
     alignItems: 'center',
   };
-
+ 
   const navItemStyle = {
     marginLeft: '2rem',
     position: 'relative',
   };
-
+ 
   const navLinkStyle = {
     textDecoration: 'none',
     color: Dark_blue_gray,
@@ -98,17 +98,17 @@ function Dashboard() {
     transition: 'color 0.2s ease-in-out, transform 0.2s ease-in-out',
     cursor: 'pointer',
   };
-
+ 
   const navLinkHoverStyle = {
     color: orange_red,
     transform: 'scale(1.05)',
   };
-
+ 
   const navIconStyle = {
     marginRight: '0.5rem',
     fill: bright_blue,
   };
-
+ 
   const cartCountStyle = {
     backgroundColor: orange_red,
     color: 'white',
@@ -117,7 +117,7 @@ function Dashboard() {
     fontSize: '0.9rem',
     marginLeft: '0.5rem',
   };
-
+ 
   const dropdownMenuStyle = {
     display: dropdownOpen ? 'block' : 'none',
     position: 'absolute',
@@ -133,7 +133,7 @@ function Dashboard() {
     opacity: dropdownOpen ? 1 : 0,
     transform: dropdownOpen ? 'translateY(0)' : 'translateY(-10px)',
   };
-
+ 
   const dropdownItemStyle = {
     padding: '0.75rem 1.25rem',
     textDecoration: 'none',
@@ -142,11 +142,12 @@ function Dashboard() {
     transition: 'background-color 0.2s ease-in-out',
     fontWeight: 500,
   };
-
+ 
   const dropdownItemHoverStyle = {
     backgroundColor: '#f8f9fa',
     color: orange_red,
   };
+ 
   const handleSearchInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
