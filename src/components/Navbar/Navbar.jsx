@@ -44,7 +44,7 @@ const Dashboard = () => {
 
   const navbarStyle = {
     backgroundColor: backgroundColor,
-    padding: '1.5rem 1rem',
+    padding: '1.1rem 1rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',

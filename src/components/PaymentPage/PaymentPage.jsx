@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './PaymentPage.css'; // Ensure this CSS file exists
 import Dashboard from '../Navbar/Navbar';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BASE_URL = 'http://localhost:5201/api'; // Adjust if your API is running elsewhere
 
@@ -89,6 +91,7 @@ const PaymentPage = () => {
         } catch (error) {
             console.error('Error fetching cart items:', error);
             setErrorCart('Failed to load cart items.');
+            toast.error('Failed to load cart items.')
             setTotalPrice(0);
         } finally {
             setLoadingCart(false);
@@ -107,48 +110,49 @@ const PaymentPage = () => {
     const handleSaveAddress = async () => {
         if (!localUserId) {
             console.error('User ID not available to update address.');
-            alert('User authentication error. Cannot update address.');
+            toast.error("User authentication error. Cannot update address.")
             return;
         }
         try {
             // Ensure 'user' state contains the fetched user data
             if (!user) {
                 console.error('User data not fetched before updating address.');
-                alert('Failed to update address. User data not available.');
+                toast.error("Failed to update address. User data not available.")
                 return;
             }
-
+    
             const response = await axios.put(
-                `${BASE_URL}/Users/${localUserId}?Name=${user.name}&Email=${user.email}&Password=${user.password}&Phonenumber=${user.phoneNumber}&Address=${newAddress}`,
+                `${BASE_URL}/Users/${localUserId}`,
+                null,
                 {
-                    name: user.name,
-                    email: user.email,
-                    password: user.password,
-                    phoneNumber: user.phoneNumber,
-                    address: newAddress,
-                },
-                {
+                    params: {
+                        Name: user.name,
+                        Email: user.email,
+                        Password: user.password,
+                        Phonenumber: user.phoneNumber,
+                        Address: newAddress,
+                    },
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`,
                     },
                 }
             );
-
+    
             if (response.status === 200) {
                 setUser(prevUser => ({ ...prevUser, address: newAddress }));
                 setIsEditingAddress(false);
-                alert('Address updated successfully!');
+                toast.success('Address updated successfully!');
             } else {
                 console.error('Error updating address:', response);
-                alert('Failed to update address.');
+                toast.error('Failed to update address.')
             }
         } catch (error) {
             console.error('Error updating address:', error);
-            alert('Failed to update address.');
+            toast.error('Failed to update address.')
         }
     };
-
+    
     const handleCancelEditAddress = () => {
         setNewAddress(user?.address || '');
         setIsEditingAddress(false);
@@ -202,11 +206,13 @@ const PaymentPage = () => {
 
         if (cartItems.length === 0) {
             setPaymentError('Your cart is empty. Please add items to place an order.');
+            toast.error('Your cart is empty. Please add items to place an order.')
             return;
         }
 
         if (!localUserId) {
             setPaymentError('User ID not found. Please log in again.');
+            toast.error('User ID not found. Please log in again.')
             return;
         }
 
@@ -262,16 +268,19 @@ const PaymentPage = () => {
             } else {
                 console.error('Payment request failed:', response);
                 setPaymentError('Failed to process payment. Please try again.');
+                toast.error('Failed to process payment. Please try again.')
             }
 
         } catch (error) {
             console.error('Error sending payment request:', error);
             setPaymentError('An unexpected error occurred while processing payment.');
+            toast.error('An unexpected error occurred while processing payment.')
         }
     };
 
     return (
         <>
+        <ToastContainer />
         <Dashboard />
         <div className="payment-page-container">
             <h2>Payment Details</h2>

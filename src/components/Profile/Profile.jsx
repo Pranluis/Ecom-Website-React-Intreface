@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import './Profile.css';
 import Navbar from '../Navbar/Navbar';
- 
+
 const BASE_URL = "http://localhost:5201/api/Users";
- 
+
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,9 +18,9 @@ const Profile = () => {
     phoneNumber: '',
     address: ''
   });
- 
+
   const navigate = useNavigate();
- 
+
   useEffect(() => {
     const fetchUser = async () => {
       const userId = localStorage.getItem('userId');
@@ -54,7 +54,7 @@ const Profile = () => {
     };
     fetchUser();
   }, [navigate]);
- 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -62,19 +62,24 @@ const Profile = () => {
       [name]: value
     });
   };
- 
+
   const handleEdit = () => {
     setIsEditing(true);
   };
- 
+
   const handleSave = async (e) => {
     e.preventDefault();
     const userId = localStorage.getItem('userId');
     const token = localStorage.getItem('token');
     try {
-      const updateUrl = `${BASE_URL}/${userId}?Name=${formData.name}&Email=${formData.email}&Password=${formData.password}&Phonenumber=${formData.phoneNumber}&Address=${formData.address}`;
-      console.log("Updating user with URL:", updateUrl);
-      await axios.put(updateUrl, null, {
+      await axios.put(`${BASE_URL}/${userId}`, null, {
+        params: {
+          Name: formData.name,
+          Email: formData.email,
+          Password: formData.password,
+          Phonenumber: formData.phoneNumber,
+          Address: formData.address,
+        },
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -102,77 +107,77 @@ const Profile = () => {
       }
     }
   };
- 
+
   if (loading) {
     return <p>Loading...</p>;
   }
- 
+
   return (
     <>
       <Navbar />
-    <div className="container">
-      {user ? (
-        <div className="profile">
-          <h3>Profile</h3>
-          {isEditing ? (
-            <form onSubmit={handleSave}>
+      <div className="container">
+        {user ? (
+          <div className="profile">
+            <h3>Profile</h3>
+            {isEditing ? (
+              <form onSubmit={handleSave}>
+                <div className="profile-details">
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <button type="submit" className="save-button">Save</button>
+              </form>
+            ) : (
               <div className="profile-details">
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-                <input
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="phoneNumber"
-                  value={formData.phoneNumber}
-                  onChange={handleChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  required
-                />
+                <p><strong>User ID:</strong> {user.userId}</p>
+                <p><strong>Name:</strong> {user.name}</p>
+                <p><strong>Email:</strong> {user.email}</p>
+                <p><strong>Password:</strong> {user.password}</p>
+                <p><strong>Phone Number:</strong> {user.phoneNumber}</p>
+                <p><strong>Address:</strong> {user.address}</p>
+                <button className="edit-button" onClick={handleEdit}>Edit</button>
               </div>
-              <button type="submit" className="save-button">Save</button>
-            </form>
-          ) : (
-            <div className="profile-details">
-              <p><strong>User ID:</strong> {user.userId}</p>
-              <p><strong>Name:</strong> {user.name}</p>
-              <p><strong>Email:</strong> {user.email}</p>
-              <p><strong>Password:</strong> {user.password}</p>
-              <p><strong>Phone Number:</strong> {user.phoneNumber}</p>
-              <p><strong>Address:</strong> {user.address}</p>
-              <button className="edit-button" onClick={handleEdit}>Edit</button>
-            </div>
-          )}
-        </div>
-      ) : (
-        <p>No user data available.</p>
-      )}
-    </div>
+            )}
+          </div>
+        ) : (
+          <p>No user data available.</p>
+        )}
+      </div>
     </>
   );
 };
- 
+
 export default Profile;

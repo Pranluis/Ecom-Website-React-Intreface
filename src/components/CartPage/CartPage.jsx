@@ -37,6 +37,7 @@ const CartPage = () => {
         .finally(() => setLoading(false));
     } else {
       console.error('Token or user ID not found in local storage');
+      toast.error('Token or user ID not found in local storage')
       setLoading(false);
     }
   }, []);
@@ -65,6 +66,7 @@ const CartPage = () => {
       });
     } catch (error) {
       console.error("Error updating quantity:", error);
+      toast.error('Error updating quantity:', error)
     }
   };
 

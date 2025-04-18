@@ -41,8 +41,6 @@ const Registration = () => {
       case "address":
         if (!value) error = "Address is required";
         break;
-      default:
-        break;
     }
 
     return error;
@@ -64,10 +62,15 @@ const Registration = () => {
     if (!validateForm()) return;
 
     try {
-      const addUrl = `${BASE_URL}?Name=${formData.name}&Email=${formData.email}&Password=${formData.password}&Phonenumber=${formData.phoneNumber}&Address=${formData.address}`;
-      console.log("Adding user with URL:", addUrl);
-
-      await axios.post(addUrl);
+      await axios.post(BASE_URL, null, {
+        params: {
+          Name: formData.name,
+          Email: formData.email,
+          Password: formData.password,
+          Phonenumber: formData.phoneNumber,
+          Address: formData.address,
+        },
+      });
       toast.success("Successfully registered!");
       resetForm();
       // Optionally, redirect the user or show a success message
