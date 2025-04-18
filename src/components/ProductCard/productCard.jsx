@@ -9,7 +9,7 @@ const BASE_URL = 'http://localhost:5201/api/Product';
 const CART_API_URL = 'http://localhost:5201/api/CartItems';
 
 const ProductCard = () => {
-    const [products, setProducts] = useState([]);
+const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');

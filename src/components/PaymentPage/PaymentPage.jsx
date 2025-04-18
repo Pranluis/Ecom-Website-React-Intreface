@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './PaymentPage.css'; // Ensure this CSS file exists
+import Dashboard from '../Navbar/Navbar';
 
 const BASE_URL = 'http://localhost:5201/api'; // Adjust if your API is running elsewhere
 
@@ -270,6 +271,8 @@ const PaymentPage = () => {
     };
 
     return (
+        <>
+        <Dashboard />
         <div className="payment-page-container">
             <h2>Payment Details</h2>
 
@@ -401,6 +404,7 @@ const PaymentPage = () => {
                 Pay Now
             </button>
         </div>
+        </>
     );
 };
 

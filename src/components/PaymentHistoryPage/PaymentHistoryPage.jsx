@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './PaymentHistory.css';
-import Navbar from '../HomePage/Navbar/Navbar';
+import Dashboard from '../Navbar/Navbar';
 
 const BASE_URL = 'http://localhost:5201/api/Payment'; // Update with your base URL
 const PAYMENTS_PER_PAGE = 5; // Number of payments to display per page
@@ -123,6 +123,7 @@ const PaymentHistoryPage = () => {
 
     return (
         <>
+        <Dashboard />
         <div className="payment-history-container">
             <h2>Payment History</h2>
             <div className="filter-section">

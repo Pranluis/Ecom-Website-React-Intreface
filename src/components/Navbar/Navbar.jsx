@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaShoppingCart, FaUser, FaHome, FaSearch } from "react-icons/fa";
 import axios from 'axios';
 import Logout from '../Logout/Logout';
@@ -8,6 +8,7 @@ const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCartCount = async () => {
@@ -97,6 +98,7 @@ const Dashboard = () => {
   const searchIconStyle = {
     marginRight: '0.75rem',
     color: bright_blue,
+    cursor: 'pointer',
   };
 
   const navListStyle = {
@@ -178,7 +180,7 @@ const Dashboard = () => {
   const handleSearchSubmit = (event) => {
     event.preventDefault(); 
     if (searchTerm.trim()) {
-      // navigate(`/search?query=${encodeURIComponent(searchTerm.trim())}`);
+      navigate(`/search-product?query=${encodeURIComponent(searchTerm.trim())}`);
       setSearchTerm(''); // Clear the input after submission
     }
   };
@@ -194,7 +196,6 @@ const Dashboard = () => {
         </div>
 
         <form style={searchBarStyle} onSubmit={handleSearchSubmit}> {/* Wrap input in form */}
-          <FaSearch style={searchIconStyle} size={20} />
           <input
             type="text"
             placeholder="Search..."
@@ -202,6 +203,9 @@ const Dashboard = () => {
             value={searchTerm}
             onChange={handleSearchInputChange}
           />
+          <button type="submit" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+            <FaSearch style={searchIconStyle} size={20} />
+          </button>
         </form>
 
         <ul style={navListStyle}>
@@ -264,4 +268,4 @@ const Dashboard = () => {
   );
 }
 
-export default Dashboard; 
+export default Dashboard;

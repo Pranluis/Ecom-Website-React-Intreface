@@ -16,6 +16,7 @@ import PaymentPage from './components/PaymentPage/PaymentPage';
 import PaymentSuccessfulPage from './components/PaymentSuccessfulPage/PaymentSuccessfulPage';
 import OrderConfirmationPage from './components/OrderConfirmationPage/OrderConfirmationPage';
 import OrderDetailsPage from './components/OrderDetailsPage/OrderDetailsPage';
+import SearchResultsPage from './components/SearchPage/Searchpage';
 
 function App() {
     const [count, setCount] = useState(0);
@@ -37,7 +38,9 @@ function App() {
                     <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
                     <Route path="/card" element={<Card />} />
                     <Route path="/order-details" element={<OrderDetailsPage />} />
+                    <Route path="/search-product" element={<SearchResultsPage />} />
 
+                    
 
                     
                 </Routes>
