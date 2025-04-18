@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   const handleDashboardClick = () => {
-    navigate('/dashboard');
+    navigate('/login');
   };
 
   const handleMouseEnter = (event) => {
