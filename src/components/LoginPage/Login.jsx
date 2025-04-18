@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
 const BASE_URL = "http://localhost:5201/api/Users";
  
 const Login = () => {
@@ -47,6 +48,8 @@ const Login = () => {
     };
  
     return (
+        <>
+
         <div className="container">
             <ToastContainer />
             <form onSubmit={handleSubmit}>
@@ -77,7 +80,7 @@ const Login = () => {
                 </div>
                 <div className="forrem">
                     <div className="forgot">
-                        <a href="#">Forgot Password?</a>
+                        <Link to="/forgot-password">Forgot Password?</Link>
                     </div>
                 </div>
                 <div className="button">
@@ -88,6 +91,7 @@ const Login = () => {
                 <p>Don't have an account? <Link to="/register" className="signup-link">Signup</Link></p>
             </div>
         </div>
+        </>
     );
 };
  

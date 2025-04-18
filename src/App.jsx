@@ -17,6 +17,7 @@ import PaymentSuccessfulPage from './components/PaymentSuccessfulPage/PaymentSuc
 import OrderConfirmationPage from './components/OrderConfirmationPage/OrderConfirmationPage';
 import OrderDetailsPage from './components/OrderDetailsPage/OrderDetailsPage';
 import SearchResultsPage from './components/SearchPage/Searchpage';
+import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 
 function App() {
     const [count, setCount] = useState(0);
@@ -27,6 +28,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/forgot-password" element={<ForgotPassword/>} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/product-management" element={<CRUD />} />
                     <Route path="/dashboard" element={<Dashboard />} />
@@ -42,7 +44,7 @@ function App() {
 
                     
 
-                    
+
                 </Routes>
             </Router>
         </div>
