@@ -1,11 +1,10 @@
-// src/components/OrderConfirmationPage/OrderConfirmationPage.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import './OrderConfirmationPage.css'; // Ensure this CSS file exists
+import './OrderConfirmationPage.css';
 import axios from 'axios';
 
-const BASE_URL_ORDER = 'http://localhost:5201/api/Order'; // Adjust if your Order API is different
-const BASE_URL_PAYMENT = 'http://localhost:5201/api/Payment'; // Adjust if your Payment API is different
+const BASE_URL_ORDER = 'http://localhost:5201/api/Order';
+const BASE_URL_PAYMENT = 'http://localhost:5201/api/Payment';
 
 const OrderConfirmationPage = () => {
   const navigate = useNavigate();
@@ -13,7 +12,7 @@ const OrderConfirmationPage = () => {
   const { state } = location;
   const shippingAddress = state?.shippingAddress;
   const localUserId = localStorage.getItem('userId');
-  const token = localStorage.getItem('token'); // Assuming you use a token
+  const token = localStorage.getItem('token'); 
   const [paymentDetails, setPaymentDetails] = useState(null);
   const [loadingPayment, setLoadingPayment] = useState(false);
   const [errorPayment, setErrorPayment] = useState(null);
@@ -35,8 +34,8 @@ const OrderConfirmationPage = () => {
             Authorization: `Bearer ${token}`,
           },
           params: {
-            sortOrder: 'desc', // Assuming your API allows sorting by date in descending order
-            pageSize: 1,      // Only fetch the latest payment
+            sortOrder: 'desc', 
+            pageSize: 1,     
             pageNumber: 1,
           },
         });

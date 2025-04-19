@@ -1,22 +1,21 @@
-// src/components/PaymentHistoryPage/PaymentHistoryPage.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './PaymentHistory.css';
 import Dashboard from '../Navbar/Navbar';
 
-const BASE_URL = 'http://localhost:5201/api/Payment'; // Update with your base URL
+const BASE_URL = 'http://localhost:5201/api/Payment'; 
 const PAYMENTS_PER_PAGE = 5; // Number of payments to display per page
 
 const PaymentHistoryPage = () => {
-    const [allPayments, setAllPayments] = useState([]); // Holds ALL fetched payments
+    const [allPayments, setAllPayments] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const userId = localStorage.getItem('userId');
     const token = localStorage.getItem('token');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
-    const [statusFilter, setStatusFilter] = useState('All'); // Added status filter state
-    const [paymentMethodFilter, setPaymentMethodFilter] = useState('All'); // Added payment method filter
+    const [statusFilter, setStatusFilter] = useState('All'); 
+    const [paymentMethodFilter, setPaymentMethodFilter] = useState('All'); 
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [currentPayments, setCurrentPayments] = useState([]);
@@ -36,7 +35,6 @@ const PaymentHistoryPage = () => {
                         Authorization: `Bearer ${token}`,
                     },
                     params: {
-                        // No pagination parameters here, we'll handle it on the frontend
                         startDate: startDate || undefined,
                         endDate: endDate || undefined,
                         status: statusFilter === 'All' ? undefined : statusFilter,

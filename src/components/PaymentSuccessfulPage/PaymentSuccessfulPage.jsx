@@ -1,18 +1,18 @@
-// src/components/PaymentSuccessfulPage/PaymentSuccessfulPage.jsx
+
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import './PaymentSuccessfulPage.css'; // Optional CSS file
+import './PaymentSuccessfulPage.css';
 import axios from 'axios';
 
-const BASE_URL_USERS = 'http://localhost:5201/api/Users'; // Adjust if your Users API is different
+const BASE_URL_USERS = 'http://localhost:5201/api/Users';
 
 const PaymentSuccessfulPage = () => {
   const location = useLocation();
   const { state } = location;
   const orderId = state?.orderId;
   const navigate = useNavigate();
-  const userId = localStorage.getItem('userId'); // Assuming userId is stored in localStorage
-  const token = localStorage.getItem('token'); // Assuming token is used for authentication
+  const userId = localStorage.getItem('userId'); 
+  const token = localStorage.getItem('token'); 
   const [userName, setUserName] = useState('');
   const [loadingUser, setLoadingUser] = useState(true);
   const [errorUser, setErrorUser] = useState(null);
@@ -32,7 +32,7 @@ const PaymentSuccessfulPage = () => {
       try {
         const response = await axios.get(`${BASE_URL_USERS}/${userId}`, {
           headers: {
-            Authorization: `Bearer ${token}`, // Include token if your API requires it
+            Authorization: `Bearer ${token}`, 
           },
         });
 

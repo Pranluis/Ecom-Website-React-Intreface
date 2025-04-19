@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './OrderDetailsPage.css'; // Import the CSS
+import './OrderDetailsPage.css'; 
 import Dashboard from '../Navbar/Navbar';
 
 const BASE_URL = 'http://localhost:5201/api/Order';
