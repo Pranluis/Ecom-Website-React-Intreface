@@ -114,7 +114,7 @@ const Profile = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="container">
         {user ? (
           <div className="profile">

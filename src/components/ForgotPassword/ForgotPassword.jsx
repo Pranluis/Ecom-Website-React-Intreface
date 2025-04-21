@@ -100,7 +100,7 @@ const ForgotPassword = () => {
     return (
         <div className="forgot-password-container">
             <ToastContainer />
-            <h2>Password Management</h2>
+            {/* <h2>Password Management</h2> */}
             {step === 1 ? (
                 <div className="forgot-password-step">
                     <h3>Forgot Password</h3>

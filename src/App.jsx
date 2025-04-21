@@ -26,7 +26,7 @@ function App() {
         <div>
             <Router>
                 <Routes>
-                    <Route path="/" element={<HomePage />} />
+    <Route path="/" element={<HomePage />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/forgot-password" element={<ForgotPassword/>} />
                     <Route path="/register" element={<RegisterPage />} />
@@ -41,10 +41,6 @@ function App() {
                     <Route path="/card" element={<Card />} />
                     <Route path="/order-details" element={<OrderDetailsPage />} />
                     <Route path="/search-product" element={<SearchResultsPage />} />
-
-                    
-
-
                 </Routes>
             </Router>
         </div>
