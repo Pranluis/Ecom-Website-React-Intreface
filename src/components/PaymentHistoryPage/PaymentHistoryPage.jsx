@@ -94,21 +94,13 @@ const PaymentHistoryPage = () => {
     };
  
     const formatDate = (dateTimeString) => {
+        if (!dateTimeString) return 'N/A';
         const date = new Date(dateTimeString);
-        const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true };
-        const dayWithSuffix = (day) => {
-            if (day >= 11 && day <= 13) return day + 'th';
-            switch (day % 10) {
-                case 1: return day + 'st';
-                case 2: return day + 'nd';
-                case 3: return day + 'rd';
-                default: return day + 'th';
-            }
+        const options = {
+            year: 'numeric', month: 'long', day: 'numeric',
+            hour: 'numeric', minute: '2-digit', hour12: true
         };
-        const formattedDate = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }).format(date);
-        const day = date.getDate();
-        const time = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }).format(date);
-        return `${formattedDate.substring(0, 3)}, ${dayWithSuffix(day)} ${formattedDate.substring(4)} - ${time}`;
+        return new Intl.DateTimeFormat('en-US', options).format(date);
     };
  
     if (loading) {

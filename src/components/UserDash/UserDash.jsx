@@ -13,7 +13,7 @@ const UserManagement = () => {
     email: "",
     phoneNumber: "",
     address: "",
-    role: "",
+    role: "", // Initialize role as an empty string
     password: "" // Include password in formData but don't show it in the form
   });
   const [isEditing, setIsEditing] = useState(false);
@@ -36,7 +36,7 @@ const UserManagement = () => {
     }
   };
 
-  // Update an existing user (PUT) using query parameters
+  // Update an existing user (PUT) using request body
   const handleSave = async (e) => {
     e.preventDefault();
     const userId = formData.userId;
@@ -45,30 +45,20 @@ const UserManagement = () => {
         params: {
           Name: formData.name,
           Email: formData.email,
-          Password: formData.password, // Include password in the request
-          PhoneNumber: formData.phoneNumber,
+          Password: formData.password,
+          Phonenumber: formData.phoneNumber,
           Address: formData.address,
-          Role: formData.role
+          Role: formData.role // Ensure the Role is sent correctly
         },
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-      // Refetch the user data after update
-      const response = await axios.get(`${API_URL}/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setFormData({
-        userId: response.data.userId,
-        name: response.data.name,
-        email: response.data.email,
-        phoneNumber: response.data.phoneNumber,
-        address: response.data.address,
-        role: response.data.role,
-        password: response.data.password // Keep the password in formData
-      });
-      setIsEditing(false);
+      // Refetch the entire user list after update
       fetchUsers();
+      setIsEditing(false);
+      // Optionally reset the form after successful update
+      resetForm();
     } catch (error) {
       console.error("Error updating user:", error.response || error.message);
       if (error.response && error.response.data) {
@@ -82,10 +72,7 @@ const UserManagement = () => {
   // Delete a user (DELETE)
   const deleteUser = async (id) => {
     try {
-      const deleteUrl = `${API_URL}/${id}`;
-      console.log("Deleting user with URL:", deleteUrl);
-
-      await axios.delete(deleteUrl, {
+      await axios.delete(`${API_URL}/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchUsers();
@@ -121,10 +108,7 @@ const UserManagement = () => {
         <h2>User Management</h2>
 
         {/* Update User Form */}
-        <form
-          className="user-management-form"
-          onSubmit={handleSave}
-        >
+        <form className="user-management-form" onSubmit={handleSave}>
           <h3>Update User</h3>
           <div className="user-management-form-group">
             <label>Name:</label>
@@ -165,21 +149,7 @@ const UserManagement = () => {
               onChange={handleInputChange}
               required
             />
-          </div>
-          <div className="user-management-form-group">
-            <label>Role:</label>
-            <select
-              name="role"
-              value={formData.role}
-              onChange={handleInputChange}
-              required
-              className="user-management-role-dropdown"
-            >
-              <option value="" disabled>Select Role</option>
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
-            </select>
-          </div>
+          </div>    
           <button type="submit" className="user-management-btn user-management-btn-primary">
             Update User
           </button>
@@ -210,19 +180,29 @@ const UserManagement = () => {
                 <td>{user.address}</td>
                 <td>{user.role}</td>
                 <td>
-                  <button className="user-management-btn user-management-btn-edit" onClick={() => {
-                    setFormData({
-                      userId: user.userId,
-                      name: user.name,
-                      email: user.email,
-                      phoneNumber: user.phoneNumber,
-                      address: user.address,
-                      role: user.role,
-                      password: user.password // Include password in formData but don't show it in the form
-                    });
-                    setIsEditing(true);
-                  }}>Edit</button>
-                  <button className="user-management-btn user-management-btn-delete" onClick={() => deleteUser(user.userId)}>Delete</button>
+                  <button
+                    className="user-management-btn user-management-btn-edit"
+                    onClick={() => {
+                      setFormData({
+                        userId: user.userId,
+                        name: user.name,
+                        email: user.email,
+                        phoneNumber: user.phoneNumber ? user.phoneNumber.toString() : '',
+                        address: user.address,
+                        role: user.role, // Ensure the role is set correctly here
+                        password: user.password // Include password in formData but don't show it in the form
+                      });
+                      setIsEditing(true);
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="user-management-btn user-management-btn-delete"
+                    onClick={() => deleteUser(user.userId)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

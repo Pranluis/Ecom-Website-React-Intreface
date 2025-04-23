@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaShoppingCart, FaUser, FaHome, FaSearch } from "react-icons/fa";
 import axios from 'axios';
@@ -9,6 +9,9 @@ const Dashboard = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const navigate = useNavigate();
+  const dropdownRef = useRef(null);
+  const navbarRef = useRef(null); // Ref for the navbar element
+  const [navbarHeight, setNavbarHeight] = useState(0);
 
   useEffect(() => {
     const fetchCartCount = async () => {
@@ -31,6 +34,38 @@ const Dashboard = () => {
     };
 
     fetchCartCount();
+
+    const handleClickOutside = (event) => {
+      if (dropdownOpen && dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropdownOpen]);
+
+  useEffect(() => {
+    // Get the height of the navbar after it renders
+    if (navbarRef.current) {
+      setNavbarHeight(navbarRef.current.offsetHeight);
+    }
+
+    // Listen for resize events to update the height if the navbar's height changes responsively
+    const handleResize = () => {
+      if (navbarRef.current) {
+        setNavbarHeight(navbarRef.current.offsetHeight);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const toggleDropdown = () => {
@@ -52,6 +87,11 @@ const Dashboard = () => {
     borderBottom: `2px solid ${bright_blue}`,
     borderRadius: '8px',
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+    position: 'fixed', // Make the navbar fixed
+    top: 0,             // Stick it to the top
+    left: 0,            // Extend to the left edge
+    right: 0,           // Extend to the right edge
+    zIndex: 100,        // Ensure it's above other content
   };
 
   const logoStyle = {
@@ -147,7 +187,8 @@ const Dashboard = () => {
     display: dropdownOpen ? 'block' : 'none',
     position: 'absolute',
     top: '110%',
-    left: 0,
+    left: 'auto',
+    right: '-15%',
     backgroundColor: 'white',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '8px',
@@ -166,6 +207,7 @@ const Dashboard = () => {
     display: 'block',
     transition: 'background-color 0.2s ease-in-out',
     fontWeight: 500,
+    whiteSpace: 'nowrap',
   };
 
   const dropdownItemHoverStyle = {
@@ -178,7 +220,7 @@ const Dashboard = () => {
   };
 
   const handleSearchSubmit = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     if (searchTerm.trim()) {
       navigate(`/search-product?query=${encodeURIComponent(searchTerm.trim())}`);
       setSearchTerm(''); // Clear the input after submission
@@ -186,8 +228,8 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
-      <nav style={navbarStyle}>
+    <div style={{ paddingTop: `${navbarHeight}px` }}> {/* Use the dynamic navbarHeight */}
+      <nav style={navbarStyle} ref={navbarRef}> {/* Attach the ref to the navbar */}
         <div style={logoStyle}>
           <Link to="/dashboard" style={logoLinkStyle}>
             <FaHome style={logoIconStyle} size={32} />
@@ -223,7 +265,7 @@ const Dashboard = () => {
               </span>
             </Link>
           </li>
-          <li style={navItemStyle}>
+          <li style={navItemStyle} ref={dropdownRef}> {/* Add ref to the list item containing the dropdown */}
             <div
               style={navLinkStyle}
               onClick={toggleDropdown}
@@ -258,12 +300,13 @@ const Dashboard = () => {
               >
                 Payment History
               </Link>
-              
+
               <Logout />
             </div>
           </li>
         </ul>
       </nav>
+      {/* Your other content will go here */}
     </div>
   );
 }

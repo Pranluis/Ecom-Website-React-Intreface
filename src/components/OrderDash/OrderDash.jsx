@@ -176,8 +176,8 @@ const OrderManagement = () => {
                     onChange={(e) => updateOrderStatus(order.orderId, e.target.value)}
                     defaultValue={order.orderStatus}
                   >
-                    <option value="Shipped">Successfully Placed</option>
-                    <option value="On the way">Shipped</option>
+                    <option value="Successfully Placed">Successfully Placed</option>
+                    <option value="Shipped">Shipped</option>
                     <option value="Delivered">Delivered</option>
                   </select>
                   <button className="order-management-btn order-management-btn-delete" onClick={() => deleteOrder(order.orderId)}>Delete</button>
