@@ -1,116 +1,82 @@
- body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
-  margin: 0;
-  padding: 0;
-}
- 
-.container {
-  max-width: 800px;
-  margin: 50px auto;
+.product-management-container {
+  max-width: 1200px;
+  margin: auto;
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
   border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Ensure horizontal scrolling if content overflows */
 }
- 
-h2 {
-  text-align: center;
-  color: #333;
-}
- 
-form {
-  margin-bottom: 30px;
-}
- 
-form h3 {
+
+.product-management-form {
   margin-bottom: 20px;
-  color: #555;
 }
- 
-.form-group {
+
+.product-management-form-group {
   margin-bottom: 15px;
 }
- 
-form label {
+
+.product-management-form-group label {
   display: block;
   margin-bottom: 5px;
-  color: #666;
+  font-weight: bold;
 }
- 
-form input[type="text"],
-form input[type="email"],
-form input[type="password"],
-form input[type="number"] {
+
+.product-management-form-group input {
   width: 100%;
-  padding: 10px;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box;
 }
- 
-.btn {
-  padding: 10px 20px;
+
+.product-management-btn {
+  padding: 10px 15px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-right: 10px;
 }
- 
-.btn-primary {
-  background-color: #28a745;
-  color: #fff;
+
+.product-management-btn-primary {
+  background-color: #007bff;
+  color: white;
 }
- 
-.btn-secondary {
-  background-color: #dc3545;
-  color: #fff;
+
+.product-management-btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  margin-left: 10px;
 }
- 
-.btn:hover {
-  opacity: 0.9;
-}
- 
-.table {
+
+.product-management-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
 }
- 
-.table th,
-.table td {
-  padding: 12px;
+
+.product-management-table th,
+.product-management-table td {
+  padding: 10px;
   border: 1px solid #ddd;
   text-align: left;
+  word-wrap: break-word; /* Ensure long text wraps within the cell */
 }
- 
-.table th {
-  background-color: #f8f9fa;
-  color: #333;
-}
- 
-.table tr:nth-child(even) {
+
+.product-management-table th {
   background-color: #f2f2f2;
 }
- 
-.table tr:hover {
-  background-color: #e9ecef;
-}
- 
-.btn-edit {
-  background-color: #007bff;
-  color: #fff;
+
+.product-management-btn-edit {
+  background-color: #ffc107;
+  color: white;
   margin-right: 5px;
 }
- 
-.btn-delete {
+
+.product-management-btn-delete {
   background-color: #dc3545;
-  color: #fff;
+  color: white;
 }
- 
-.btn-edit:hover,
-.btn-delete:hover {
-  opacity: 0.9;
+
+.product-management-table td img {
+  max-width: 100px; /* Limit image width */
+  height: auto;
+  display: block;
 }
- 
- 

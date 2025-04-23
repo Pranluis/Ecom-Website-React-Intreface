@@ -75,12 +75,12 @@ const Registration = () => {
       resetForm();
       // Optionally, redirect the user or show a success message
     } catch (error) {
-      if (error.response && error.response.status === 409) {
-        setErrors({ ...errors, email: "Email already exists" });
+      if (error.response && error.response.status === 500) {
+        toast.error({ ...errors, email: "Email already exists" });
         toast.error("Email already exists");
       } else {
         console.error("Error adding user:", error.response || error.message);
-        toast.error("Registration failed. Please try again.");
+        toast.error("Registration failed. Email already exists.");
       }
     }
   };

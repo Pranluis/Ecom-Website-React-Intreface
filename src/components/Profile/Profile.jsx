@@ -165,7 +165,7 @@ const Profile = () => {
                 <p><strong>User ID:</strong> {user.userId}</p>
                 <p><strong>Name:</strong> {user.name}</p>
                 <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Password:</strong> {user.password}</p>
+                
                 <p><strong>Phone Number:</strong> {user.phoneNumber}</p>
                 <p><strong>Address:</strong> {user.address}</p>
                 <button className="edit-button" onClick={handleEdit}>Edit</button>

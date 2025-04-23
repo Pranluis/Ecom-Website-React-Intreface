@@ -18,6 +18,9 @@ import OrderConfirmationPage from './components/OrderConfirmationPage/OrderConfi
 import OrderDetailsPage from './components/OrderDetailsPage/OrderDetailsPage';
 import SearchResultsPage from './components/SearchPage/Searchpage';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword';
+import AdminPanel from './components/AdminPanel/AdminPanel';
+import OrderManagement from './components/OrderDash/OrderDash';
+import UserManagement from './components/UserDash/UserDash';
 
 function App() {
     const [count, setCount] = useState(0);
@@ -26,11 +29,13 @@ function App() {
         <div>
             <Router>
                 <Routes>
-    <Route path="/" element={<HomePage />} />
+                    <Route path="/" element={<HomePage />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/forgot-password" element={<ForgotPassword/>} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/product-management" element={<CRUD />} />
+                    <Route path="/order-management" element={<OrderManagement />} />
+                    <Route path="/user-management" element={<UserManagement />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/carts" element={<CartPage />} />
                     <Route path="/profile" element={<Profile />} />
@@ -41,6 +46,7 @@ function App() {
                     <Route path="/card" element={<Card />} />
                     <Route path="/order-details" element={<OrderDetailsPage />} />
                     <Route path="/search-product" element={<SearchResultsPage />} />
+                    <Route path="/admin-panel" element={<AdminPanel />} />
                 </Routes>
             </Router>
         </div>

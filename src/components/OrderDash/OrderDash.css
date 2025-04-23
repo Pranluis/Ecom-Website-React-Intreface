@@ -1,0 +1,77 @@
+.order-management-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-management-form {
+  margin-bottom: 20px;
+}
+
+.order-management-form-group {
+  margin-bottom: 15px;
+}
+
+.order-management-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.order-management-form-group input,
+.order-management-status-dropdown {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.order-management-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.order-management-btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.order-management-btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  margin-left: 10px;
+}
+
+.order-management-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-management-table th,
+.order-management-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.order-management-table th {
+  background-color: #f2f2f2;
+}
+
+.order-management-status-dropdown {
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.order-management-btn-delete {
+  background-color: #dc3545;
+  color: white;
+  margin-left: 10px;
+}

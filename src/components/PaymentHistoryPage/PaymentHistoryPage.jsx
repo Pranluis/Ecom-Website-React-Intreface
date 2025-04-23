@@ -2,24 +2,24 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './PaymentHistory.css';
 import Dashboard from '../Navbar/Navbar';
-
-const BASE_URL = 'http://localhost:5201/api/Payment'; 
+ 
+const BASE_URL = 'http://localhost:5201/api/Payment';
 const PAYMENTS_PER_PAGE = 5; // Number of payments to display per page
-
+ 
 const PaymentHistoryPage = () => {
-    const [allPayments, setAllPayments] = useState([]); 
+    const [allPayments, setAllPayments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const userId = localStorage.getItem('userId');
     const token = localStorage.getItem('token');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
-    const [statusFilter, setStatusFilter] = useState('All'); 
-    const [paymentMethodFilter, setPaymentMethodFilter] = useState('All'); 
+    const [statusFilter, setStatusFilter] = useState('All');
+    const [paymentMethodFilter, setPaymentMethodFilter] = useState('All');
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [currentPayments, setCurrentPayments] = useState([]);
-
+ 
     useEffect(() => {
         const fetchPaymentHistory = async () => {
             if (!userId || !token) {
@@ -27,7 +27,7 @@ const PaymentHistoryPage = () => {
                 setLoading(false);
                 return;
             }
-
+ 
             setLoading(true);
             try {
                 const response = await axios.get(`${BASE_URL}/user-payments/${userId}`, {
@@ -51,10 +51,10 @@ const PaymentHistoryPage = () => {
                 setLoading(false);
             }
         };
-
+ 
         fetchPaymentHistory();
     }, [userId, token, startDate, endDate, statusFilter, paymentMethodFilter]);
-
+ 
     useEffect(() => {
         const filteredPayments = allPayments.filter(payment => {
             const paymentDate = new Date(payment.paymentDateTime);
@@ -63,26 +63,26 @@ const PaymentHistoryPage = () => {
             const statusMatch = statusFilter === 'All' || payment.status === statusFilter;
             const methodMatch = paymentMethodFilter === 'All' || payment.paymentMethod === paymentMethodFilter;
             const dateMatch = (!start || paymentDate >= start) && (!end || paymentDate <= end);
-
+ 
             return dateMatch && statusMatch && methodMatch;
         });
-
+ 
         const indexOfLastPayment = currentPage * PAYMENTS_PER_PAGE;
         const indexOfFirstPayment = indexOfLastPayment - PAYMENTS_PER_PAGE;
         setCurrentPayments(filteredPayments.slice(indexOfFirstPayment, indexOfLastPayment));
         setTotalPages(Math.ceil(filteredPayments.length / PAYMENTS_PER_PAGE));
     }, [allPayments, startDate, endDate, statusFilter, currentPage]);
-
+ 
     const handlePageChange = (pageNumber) => {
         if (pageNumber >= 1 && pageNumber <= totalPages) {
             setCurrentPage(pageNumber);
         }
     };
-
+ 
     const handlePreviousPage = () => {
         setCurrentPage(prev => Math.max(prev - 1, 1));
     };
-
+ 
     const handleNextPage = () => {
         setCurrentPage(prev => Math.min(prev + 1, totalPages));
     };
@@ -92,7 +92,7 @@ const PaymentHistoryPage = () => {
         setStatusFilter('All');
         setPaymentMethodFilter('All');
     };
-
+ 
     const formatDate = (dateTimeString) => {
         const date = new Date(dateTimeString);
         const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true };
@@ -110,15 +110,15 @@ const PaymentHistoryPage = () => {
         const time = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }).format(date);
         return `${formattedDate.substring(0, 3)}, ${dayWithSuffix(day)} ${formattedDate.substring(4)} - ${time}`;
     };
-
+ 
     if (loading) {
         return <div className="payment-history-container">Loading payment history...</div>;
     }
-
+ 
     if (error) {
         return <div className="payment-history-container error">Error: {error}</div>;
     }
-
+ 
     return (
         <>
         <Dashboard />
@@ -143,7 +143,7 @@ const PaymentHistoryPage = () => {
                 <select id="statusFilter" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
                     <option value="All">All</option>
                     <option value="Payment Completed">Payment Completed</option>
-                    <option value="Pending payment - For Order Comfirmation">Pending payment</option>
+                    <option value="Payment Failed">Payment Failed</option>
                     {/* Add other status options as needed */}
                 </select>
                 <div>
@@ -160,7 +160,7 @@ const PaymentHistoryPage = () => {
                     Clear Filters
                 </button>
             </div>
-            
+           
             {currentPayments.length > 0 ? (
                 <>
                     <table className="payment-history-table">
@@ -212,5 +212,5 @@ const PaymentHistoryPage = () => {
         </>
     );
 };
-
+ 
 export default PaymentHistoryPage;
