@@ -69,3 +69,27 @@
     background-color: #218838;
   }
   
+  .back-button {
+    display: inline-block;
+    padding: 10px 20px; /* Adjust padding for desired size */
+    margin-bottom: 20px; /* Add some space below the button */
+    text-decoration: none; /* Remove default link underline */
+    color: #fff; /* White text color */
+    background-color: #007bff; /* Primary blue color */
+    border: 1px solid #007bff; /* Match border color */
+    border-radius: 5px; /* Slightly rounded corners */
+    font-size: 16px; /* Adjust font size */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+  }
+  
+  .back-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    border-color: #0056b3;
+  }
+  
+  /* Optional: Add some styling for focus state */
+  .back-button:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); /* Add a custom focus ring */
+  }
+  

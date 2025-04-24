@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link
 import axios from "axios";
 import './Profile.css';
 import Navbar from '../Navbar/Navbar';
@@ -116,6 +116,7 @@ const Profile = () => {
     <>
       {/* <Navbar /> */}
       <div className="container">
+        <Link to="/dashboard" className="back-button">Back to Dashboard</Link> {/* Added Back Button */}
         {user ? (
           <div className="profile">
             <h3>Profile</h3>
@@ -165,7 +166,7 @@ const Profile = () => {
                 <p><strong>User ID:</strong> {user.userId}</p>
                 <p><strong>Name:</strong> {user.name}</p>
                 <p><strong>Email:</strong> {user.email}</p>
-                
+
                 <p><strong>Phone Number:</strong> {user.phoneNumber}</p>
                 <p><strong>Address:</strong> {user.address}</p>
                 <button className="edit-button" onClick={handleEdit}>Edit</button>

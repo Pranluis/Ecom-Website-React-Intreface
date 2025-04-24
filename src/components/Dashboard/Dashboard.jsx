@@ -9,7 +9,7 @@ function Dashboard() {
     <div>
       <Navbar />
       <Categories />
-      <Dummy/>
+      {/* <Dummy/> */}
       <ProductCard/>
     </div>
   );

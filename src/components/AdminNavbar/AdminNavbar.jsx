@@ -137,14 +137,14 @@ const AdminNavbar = () => {
                         Account
                     </div>
                     <div style={dropdownMenuStyle}>
-                        <Link
+                        {/* <Link
                             to="/profile"
                             style={dropdownItemStyle}
                             onMouseOver={(e) => Object.assign(e.currentTarget.style, dropdownItemHoverStyle)}
                             onMouseOut={(e) => Object.assign(e.currentTarget.style, dropdownItemStyle)}
                         >
                             My Profile
-                        </Link>
+                        </Link> */}
                         <Link
                             to="/user-management"
                             style={dropdownItemStyle}

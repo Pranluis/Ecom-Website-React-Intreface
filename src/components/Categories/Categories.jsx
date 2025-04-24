@@ -43,7 +43,7 @@ function Categories() {
   return (
     <div style={categoriesStyle}>
       <Link
-        to="/category/toys"
+        to="#"
         style={categoryItemStyle}
         onMouseOver={(e) => Object.assign(e.currentTarget.style, categoryLinkHoverStyle)}
         onMouseOut={(e) => Object.assign(e.currentTarget.style, { ...categoryItemStyle, color: Dark_blue_gray })}
@@ -52,7 +52,7 @@ function Categories() {
         Toys
       </Link>
       <Link
-        to="/category/clothing"
+        to="#"
         style={categoryItemStyle}
         onMouseOver={(e) => Object.assign(e.currentTarget.style, categoryLinkHoverStyle)}
         onMouseOut={(e) => Object.assign(e.currentTarget.style, { ...categoryItemStyle, color: Dark_blue_gray })}
@@ -61,7 +61,7 @@ function Categories() {
         Clothing
       </Link>
       <Link
-        to="/category/electronics"
+        to="#"
         style={categoryItemStyle}
         onMouseOver={(e) => Object.assign(e.currentTarget.style, categoryLinkHoverStyle)}
         onMouseOut={(e) => Object.assign(e.currentTarget.style, { ...categoryItemStyle, color: Dark_blue_gray })}
@@ -70,7 +70,7 @@ function Categories() {
         Electronics
       </Link>
       <Link
-        to="/category/mobiles"
+        to="#"
         style={categoryItemStyle}
         onMouseOver={(e) => Object.assign(e.currentTarget.style, categoryLinkHoverStyle)}
         onMouseOut={(e) => Object.assign(e.currentTarget.style, { ...categoryItemStyle, color: Dark_blue_gray })}
@@ -79,7 +79,7 @@ function Categories() {
         Mobiles
       </Link>
       <Link
-        to="/category/home-decor"
+        to="#"
         style={categoryItemStyle}
         onMouseOver={(e) => Object.assign(e.currentTarget.style, categoryLinkHoverStyle)}
         onMouseOut={(e) => Object.assign(e.currentTarget.style, { ...categoryItemStyle, color: Dark_blue_gray })}
@@ -88,7 +88,7 @@ function Categories() {
         Home Decor
       </Link>
       <Link
-        to="/category/appliances"
+        to="#"
         style={categoryItemStyle}
         onMouseOver={(e) => Object.assign(e.currentTarget.style, categoryLinkHoverStyle)}
         onMouseOut={(e) => Object.assign(e.currentTarget.style, { ...categoryItemStyle, color: Dark_blue_gray })}
