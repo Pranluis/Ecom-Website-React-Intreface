@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import './SearchPage.css'; // Import the CSS file
 import Dashboard from '../Navbar/Navbar';
 
-
 const BASE_URL = 'http://localhost:5201/api/Product';
 const CART_API_URL = 'http://localhost:5201/api/CartItems';
 
@@ -111,39 +110,43 @@ const SearchProduct = () => {
       <ToastContainer />
       <Dashboard />
       <div className="product-grid">
-        {searchResults.map(product => (
-          <div key={product.productId} className="product-card">
-            <div className="image-container">
-              <img src={product.productImgURL} alt={product.productName} className="product-image" />
-            </div>
-            <div className="product-details">
-              <h2 className="product-title">{product.productName}</h2>
-              <p className="product-description">{product.productDescription}</p>
-              <div className="price-category">
-                <p className="product-price">₹{product.productPrice}</p>
-                <p className="product-category">{product.productCategory}</p>
+        {searchResults.length === 0 ? (
+          <div className="no-products-message">No products found.</div>
+        ) : (
+          searchResults.map(product => (
+            <div key={product.productId} className="product-card">
+              <div className="image-container">
+                <img src={product.productImgURL} alt={product.productName} className="product-image" />
               </div>
-              <div className="quantity-control">
-                <label htmlFor={`quantity-${product.productId}`} className="quantity-label">Qty:</label>
-                <input
-                  type="number"
-                  id={`quantity-${product.productId}`}
-                  name="quantity"
-                  value={product.quantity}
-                  onChange={(e) => handleQuantityChange(product.productId, parseInt(e.target.value, 10) || 1)}
-                  min="1"
-                  className="quantity-input"
-                />
+              <div className="product-details">
+                <h2 className="product-title">{product.productName}</h2>
+                <p className="product-description">{product.productDescription}</p>
+                <div className="price-category">
+                  <p className="product-price">₹{product.productPrice}</p>
+                  <p className="product-category">{product.productCategory}</p>
+                </div>
+                <div className="quantity-control">
+                  <label htmlFor={`quantity-${product.productId}`} className="quantity-label">Qty:</label>
+                  <input
+                    type="number"
+                    id={`quantity-${product.productId}`}
+                    name="quantity"
+                    value={product.quantity}
+                    onChange={(e) => handleQuantityChange(product.productId, parseInt(e.target.value, 10) || 1)}
+                    min="1"
+                    className="quantity-input"
+                  />
+                </div>
+                <button
+                  onClick={() => handleAddToCart(product.productId)}
+                  className="add-to-cart-button"
+                >
+                  <FaShoppingCart className="cart-icon" /> Add to Cart
+                </button>
               </div>
-              <button
-                onClick={() => handleAddToCart(product.productId)}
-                className="add-to-cart-button"
-              >
-                <FaShoppingCart className="cart-icon" /> Add to Cart
-              </button>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </>
   );
