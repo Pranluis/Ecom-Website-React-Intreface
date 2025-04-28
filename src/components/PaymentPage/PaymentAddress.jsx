@@ -62,15 +62,16 @@ const PaymentAddress = () => {
             }
 
             const response = await axios.put(
-                `${BASE_URL}/Users/${localUserId}?Name=${user.name}&Email=${user.email}&Password=${user.password}&Phonenumber=${user.phoneNumber}&Address=${newAddress}`,
+                `${BASE_URL}/Users/${localUserId}`,
+                null,
                 {
-                    name: user.name,
-                    email: user.email,
-                    password: user.password,
-                    phoneNumber: user.phoneNumber,
-                    address: newAddress,
-                },
-                {
+                    params: {
+                        Name: user.name,
+                        Email: user.email,
+                        Password: user.password,
+                        Phonenumber: user.phoneNumber,
+                        Address: newAddress,
+                    },
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`,
