@@ -1,4 +1,5 @@
 🛒 Full-Stack E-Commerce Website
+
 A feature-rich and responsive E-Commerce Web Application built using React for the frontend and .NET with Entity Framework for the backend API. This project demonstrates a complete shopping workflow with authentication, user roles, and product management, suitable for modern online stores.
 
 ✨ Features
